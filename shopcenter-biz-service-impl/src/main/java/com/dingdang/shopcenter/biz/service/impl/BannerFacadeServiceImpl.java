@@ -45,7 +45,6 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
             logger.error("Fail to addBanner ! bannerName must not be null or empty!");
             throw new ServiceException(-1, "banner名称 不能为空");
         }
-
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
         return (BannerBean) Optionals.transformBean(bannerDomainService.addBanner(banner), BannerBean.class);
@@ -66,10 +65,9 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
             logger.error("Fail to modifyBanner ! bannerBean.getBannerId() must not be null !");
             throw new ServiceException(-1, "bannerBean.getBannerId() 不能为空");
         }
-
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
-        return (BannerBean) Optionals.transformBean( bannerDomainService.modifyBanner(banner), BannerBean.class);
+        return (BannerBean) Optionals.transformBean(bannerDomainService.modifyBanner(banner), BannerBean.class);
     }
 
     /**
@@ -83,7 +81,6 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
             logger.error("Fail to getBannerDetail ! bannerId must not be null !");
             throw new ServiceException(-1, "bannerId 不能为空");
         }
-
         bannerDomainService.removeBanner(bannerId);
     }
 
@@ -98,7 +95,6 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
             logger.error("Fail to getBannerDetail ! bannerId must not be null !");
             throw new ServiceException(-1, "bannerId 不能为空");
         }
-
         return (BannerBean) Optionals.transformBean(bannerDomainService.getBannerDetail(bannerId), BannerBean.class);
     }
 
@@ -145,13 +141,7 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         if (bannerSearchBean != null) {
             BeanUtils.copyProperties2(bannerSearch, bannerSearchBean);
         }
-        Banner banner = bannerDomainService.getBannerByCondition(bannerSearch);
-        if (banner != null){
-            BannerBean bannerBean = new BannerBean();
-            BeanUtils.copyProperties2(bannerBean, banner);
-            return bannerBean;
-        }
-        return null;
+        return (BannerBean) Optionals.transformBean(bannerDomainService.getBannerByCondition(bannerSearch), BannerBean.class);
     }
 
     /**
@@ -166,7 +156,6 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
             throw new ServiceException(-1, "bannerBeans 不能为空");
         }
         for (BannerBean bannerBean : bannerBeans){
-
             if (bannerBean.getBannerName() == null){
             logger.error("Fail to addBanner ! bannerName must not be null or empty!");
                 throw new ServiceException(-1, "banner名称 不能为空");

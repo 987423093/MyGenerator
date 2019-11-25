@@ -50,7 +50,6 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         }
              </#list>
         </#if>
-
         ${argObj} ${argName} = new ${argObj}();
         BeanUtils.copyProperties2(${argName}, ${argName}Bean);
         return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.add${argObj}(${argName}), ${argObj}Bean.class);
@@ -71,10 +70,9 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
             logger.error("Fail to modify${argObj} ! ${argName}Bean.get${primaryObject.ename?cap_first}() must not be null !");
             throw new ServiceException(-1, "${argName}Bean.get${primaryObject.ename?cap_first}() 不能为空");
         }
-
         ${argObj} ${argName} = new ${argObj}();
         BeanUtils.copyProperties2(${argName}, ${argName}Bean);
-        return (${argObj}Bean) Optionals.transformBean( ${argName}DomainService.modify${argObj}(${argName}), ${argObj}Bean.class);
+        return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.modify${argObj}(${argName}), ${argObj}Bean.class);
     }
 
     /**
@@ -88,7 +86,6 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
             logger.error("Fail to get${argObj}Detail ! ${primaryObject.ename} must not be null !");
             throw new ServiceException(-1, "${primaryObject.ename} 不能为空");
         }
-
         ${argName}DomainService.remove${argObj}(${primaryObject.ename});
     }
 
@@ -103,7 +100,6 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
             logger.error("Fail to get${argObj}Detail ! ${primaryObject.ename} must not be null !");
             throw new ServiceException(-1, "${primaryObject.ename} 不能为空");
         }
-
         return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.get${argObj}Detail(${primaryObject.ename}), ${argObj}Bean.class);
     }
 
@@ -150,13 +146,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         if (${argName}SearchBean != null) {
             BeanUtils.copyProperties2(${argName}Search, ${argName}SearchBean);
         }
-        ${argObj} ${argName} = ${argName}DomainService.get${argObj}ByCondition(${argName}Search);
-        if (${argName} != null){
-            ${argObj}Bean ${argName}Bean = new ${argObj}Bean();
-            BeanUtils.copyProperties2(${argName}Bean, ${argName});
-            return ${argName}Bean;
-        }
-        return null;
+        return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.get${argObj}ByCondition(${argName}Search), ${argObj}Bean.class);
     }
 
     /**
