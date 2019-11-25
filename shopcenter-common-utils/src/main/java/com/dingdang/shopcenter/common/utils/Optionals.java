@@ -2,7 +2,9 @@ package com.dingdang.shopcenter.common.utils;
 
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.enums.StateEnum;
+import com.dingdang.commons.utils.BeanUtils;
 import com.dingdang.shopcenter.common.utils.enums.ArgTypeEnum;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -55,6 +57,26 @@ public class Optionals {
     public static Object getDefaultDetail(Object obj){
 
         return obj == null ? null : getDefaultChar(obj, "state");
+    }
+
+    /**
+     * 转换bean
+     * @param obj
+     * @param clazz
+     * @return
+     */
+    public static Object transformBean(Object obj, Class clazz){
+
+        try {
+            Object beanObj = clazz.newInstance();
+            if (obj != null) {
+                BeanUtils.copyProperties2(beanObj, obj);
+                return beanObj;
+            }
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

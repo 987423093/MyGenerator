@@ -7,47 +7,57 @@ import com.dingdang.shopcenter.common.facade.beans.BannerSearchBean;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/9/30
+ * @author zhoutao's template
+ * @date 2019/11/25
  */
 public interface BannerFacadeService {
 
     /**
-     * 增加banner
+     * 增加横幅
      * @param bannerBean
      */
-    void addBanner(BannerBean bannerBean);
+    BannerBean addBanner(BannerBean bannerBean);
 
     /**
-     * 修改banner
+     * 修改横幅
      * @param bannerBean
      */
-    void modifyBanner(BannerBean bannerBean);
+    BannerBean modifyBanner(BannerBean bannerBean);
 
     /**
-     * 得到banner详情
-     * @param bannerId
-     * @return
-     */
-    BannerBean getBannerDetail(Long bannerId);
-
-    /**
-     * 移除banner
+     * 移除横幅
      * @param bannerId
      */
     void removeBanner(Long bannerId);
 
     /**
-     * 列出banner
+     * 得到横幅详情
+     * @param bannerId
+     */
+    BannerBean getBannerDetail(Long bannerId);
+
+    /**
+     * 列出横幅
      * @param bannerSearchBean
-     * @return
      */
     List<BannerBean> listBanner(BannerSearchBean bannerSearchBean);
 
     /**
-     * 分页列出banner
+     * 分页列出横幅
      * @param bannerSearchBean
-     * @return
+     * @param pagerListBean
      */
     PagerListBean<BannerBean> listBannerByPage(BannerSearchBean bannerSearchBean, PagerListBean pagerListBean);
+
+    /**
+     * 根据条件得到横幅
+     * @param bannerSearchBean
+     */
+    BannerBean getBannerByCondition(BannerSearchBean bannerSearchBean);
+
+    /**
+     * 批量添加横幅
+     * @param bannerBeans
+     */
+    void batchAddBanner(List<BannerBean> bannerBeans);
 }

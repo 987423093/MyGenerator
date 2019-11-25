@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author zhoutao
- * @date 2019/10/9
+ * @author zhoutao's template
+ * @date 2019/11/25
  */
 @Data
 public class BannerBean implements Serializable {
@@ -38,7 +38,7 @@ public class BannerBean implements Serializable {
     private Long mallId;
 
     /**
-     * 创建id
+     * 创建人
      */
     private Long creator;
 
@@ -48,7 +48,7 @@ public class BannerBean implements Serializable {
     private Date createDate;
 
     /**
-     * 修改id
+     * 修改人
      */
     private Long modifier;
 

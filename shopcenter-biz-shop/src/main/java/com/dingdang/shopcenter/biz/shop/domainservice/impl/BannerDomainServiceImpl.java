@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/9/30
+ * @author zhoutao's template
+ * @date 2019/11/25
  */
 @Service
 public class BannerDomainServiceImpl implements BannerDomainService {
@@ -21,66 +21,83 @@ public class BannerDomainServiceImpl implements BannerDomainService {
     private BannerRepository bannerRepository;
 
     /**
-     * 增加banner
+     * 增加横幅
      * @param banner
      */
     @Override
-    public void addBanner(Banner banner) {
+    public Banner addBanner(Banner banner){
 
-        bannerRepository.addBanner(banner);
+        return bannerRepository.addBanner(banner);
     }
 
     /**
-     * 修改banner
+     * 修改横幅
      * @param banner
      */
     @Override
-    public void modifyBanner(Banner banner) {
+    public Banner modifyBanner(Banner banner){
 
-        bannerRepository.modifyBanner(banner);
+        return bannerRepository.modifyBanner(banner);
     }
 
     /**
-     * 得到banner详情
-     * @param bannerId
-     * @return
-     */
+    * 移除横幅
+    * @param bannerId
+    */
     @Override
-    public Banner getBannerDetail(Long bannerId) {
-
-        return bannerRepository.getBannerDetail(bannerId);
-    }
-
-    /**
-     * 移除banner
-     * @param bannerId
-     */
-    @Override
-    public void removeBanner(Long bannerId) {
+    public void removeBanner(Long bannerId){
 
         bannerRepository.removeBanner(bannerId);
     }
 
     /**
-     * 列出banner
-     * @param bannerSearch
-     * @return
+     * 得到横幅详情
+     * @param bannerId
      */
     @Override
-    public List<Banner> listBanner(BannerSearch bannerSearch) {
+    public Banner getBannerDetail(Long bannerId){
+
+        return bannerRepository.getBannerDetail(bannerId);
+    }
+
+    /**
+     * 列出横幅
+     * @param bannerSearch
+     */
+    @Override
+    public List<Banner> listBanner(BannerSearch bannerSearch){
 
         return bannerRepository.listBanner(bannerSearch);
     }
 
     /**
-     * 分页列出banner
+     * 分页列出横幅
      * @param bannerSearch
      * @param pagerListBean
-     * @return
      */
     @Override
-    public PagerListBean<Banner> listBannerByPage(BannerSearch bannerSearch, PagerListBean pagerListBean) {
+    public PagerListBean<Banner> listBannerByPage(BannerSearch bannerSearch, PagerListBean pagerListBean){
 
         return bannerRepository.listBannerByPage(bannerSearch, pagerListBean);
+    }
+
+    /**
+     * 根据条件得到横幅
+     * @param bannerSearch
+     */
+    @Override
+    public Banner getBannerByCondition(BannerSearch bannerSearch){
+
+        return bannerRepository.getBannerByCondition(bannerSearch);
+    }
+
+    /**
+     * 批量添加横幅
+     * @param banners
+     */
+    @Override
+    public void batchAddBanner(List<Banner> banners){
+
+        bannerRepository.batchAddBanner(banners);
     }
 }

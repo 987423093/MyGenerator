@@ -1,0 +1,58 @@
+中心层代码生成工具3.0_zt
+
+【工具介绍】
+    基于freemarker
+    1.自动生成业务层，避免重复劳动
+    2.目前只推荐使用在简单的单表
+
+【使用方式】
+    1.添加pom
+        请在share层添加
+        <dependency>
+                    <groupId>org.freemarker</groupId>
+                    <artifactId>freemarker</artifactId>
+                    <version>2.3.23</version>
+        </dependency>
+    2.添加.ignore
+        避免无用工具代码提交
+        autogenerator
+        templates
+    3.从最新的shopcenter的feature-merge-1.0-zhoutao-generator拷贝代码
+        1).autogenerator包下所有代码
+        2).resources/templates 所有资源文件
+    4.autoMethodGenerator.setTableObject(表名，中文名) 设置需要生成的表
+    5.执行封装的autoGenerator接口里的方法
+
+【参数介绍】
+    1.tableName: 数据库表名
+    2.argCN: 中文描述
+【方法介绍】
+
+    * createAll(): 生成所有类,包含了所有的业务层,bean,db,dubboConfig
+    * createClazz(): 生成domain,domainImpl.repository,repositoryImpl,facade,facadeImpl六个业务层的代码
+    * createBeans(): 生成bean,searchBean,search三个bean
+    createDomain(): 生成domain接口层
+    createDomainImpl(): 生成domain实现层
+    createRepository(): 生成repository接口层
+    createRepositoryImpl(): 生成repository实现层
+    createFacade(): 生成facade实现层
+    createFacadeImpl(): 生成facade接口层
+    createBean(): 生成bean
+    createSearchBean(): 生成searchBean
+    createSearch(): 生成search
+    createDBObject(): 生成dataobject并初始化字段信息，可为createBean()提供参数
+    getDubboConfig(): 生成dubbo配置
+    createConditionObject：生成条件对象，方便setCondition()
+    rollBack(): 撤回最近一次文件
+    rollBack(version):回滚对应版本号的代码，version见cache下的version文件
+
+【设置条件】
+    1.setMustCondition: 设置必填条件
+    2.setSearchCondition: 设置可选条件
+    3.setLikeCondition: 设置模糊匹配条件与searchCondition互斥
+    4.setDateBetweenCondition: 设置时间范围
+【辅助功能】
+    1.备份 backUp 默认false不开启 setBackUp(true)来开启历史备份，回滚代码
+    2.打印过程 outPrint 默认true开启 setOutPrint(false) 来关闭打印
+【工程结构介绍】
+    1.MyAutoGenerator 调用者使用类

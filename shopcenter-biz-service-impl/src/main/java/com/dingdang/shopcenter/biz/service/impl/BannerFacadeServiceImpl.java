@@ -4,22 +4,23 @@ import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.commons.utils.BeanUtils;
 import com.dingdang.commons.utils.StringUtils;
+import com.dingdang.commons.utils.CollectionUtils;
 import com.dingdang.shopcenter.biz.shop.condition.BannerSearch;
 import com.dingdang.shopcenter.biz.shop.dataobject.Banner;
 import com.dingdang.shopcenter.biz.shop.domainservice.BannerDomainService;
 import com.dingdang.shopcenter.common.facade.beans.BannerBean;
 import com.dingdang.shopcenter.common.facade.beans.BannerSearchBean;
 import com.dingdang.shopcenter.common.facade.interfaces.BannerFacadeService;
+import com.dingdang.shopcenter.common.utils.Optionals;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/9/30
+ * @author zhoutao's template
+ * @date 2019/11/25
  */
 @Service
 public class BannerFacadeServiceImpl implements BannerFacadeService {
@@ -30,88 +31,83 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
     private BannerDomainService bannerDomainService;
 
     /**
-     * 增加banner
+     * 增加横幅
      * @param bannerBean
      */
     @Override
-    public void addBanner(BannerBean bannerBean) {
+    public BannerBean addBanner(BannerBean bannerBean){
 
         if (bannerBean == null){
             logger.error("Fail to addBanner ! bannerBean must not be null !");
             throw new ServiceException(-1, "bannerBean 不能为空");
         }
-        if (bannerBean.getMallId() == null){
-            logger.error("Fail to addBanner ! bannerBean.getMallId() must not be null !");
-            throw new ServiceException(-1, "bannerBean.getMallId() 不能为空");
+        if (bannerBean.getBannerName() == null){
+            logger.error("Fail to addBanner ! bannerName must not be null or empty!");
+            throw new ServiceException(-1, "banner名称 不能为空");
         }
 
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
-        bannerDomainService.addBanner(banner);
+        return (BannerBean) Optionals.transformBean(bannerDomainService.addBanner(banner), BannerBean.class);
     }
 
     /**
-     * 修改banner
+     * 修改横幅
      * @param bannerBean
      */
     @Override
-    public void modifyBanner(BannerBean bannerBean) {
+    public BannerBean modifyBanner(BannerBean bannerBean){
 
         if (bannerBean == null){
-            logger.error("Fail to modifyBanner ! bannerBean must not be null !");
-            throw new ServiceException(-1, "bannerBean 不能为空");
+             logger.error("Fail to modifyBanner ! bannerBean must not be null !");
+             throw new ServiceException(-1, "bannerBean 不能为空");
         }
         if (bannerBean.getBannerId() == null){
             logger.error("Fail to modifyBanner ! bannerBean.getBannerId() must not be null !");
             throw new ServiceException(-1, "bannerBean.getBannerId() 不能为空");
         }
+
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
-        bannerDomainService.modifyBanner(banner);
+        return (BannerBean) Optionals.transformBean( bannerDomainService.modifyBanner(banner), BannerBean.class);
     }
 
     /**
-     * 得到banner详情
-     * @param bannerId
-     * @return
-     */
+    * 移除横幅
+    * @param bannerId
+    */
     @Override
-    public BannerBean getBannerDetail(Long bannerId) {
+    public void removeBanner(Long bannerId){
 
         if (bannerId == null){
             logger.error("Fail to getBannerDetail ! bannerId must not be null !");
             throw new ServiceException(-1, "bannerId 不能为空");
         }
-        Banner banner = bannerDomainService.getBannerDetail(bannerId);
-        if (banner != null) {
-            BannerBean bannerBean = new BannerBean();
-            BeanUtils.copyProperties2(bannerBean, banner);
-            return bannerBean;
-        }
-        return null;
-    }
 
-    /**
-     * 移除banner
-     * @param bannerId
-     */
-    @Override
-    public void removeBanner(Long bannerId) {
-
-        if (bannerId == null){
-            logger.error("Fail to removeBanner ! bannerId must not be null !");
-            throw new ServiceException(-1, "bannerId 不能为空");
-        }
         bannerDomainService.removeBanner(bannerId);
     }
 
     /**
-     * 列出banner
-     * @param bannerSearchBean
-     * @return
+     * 得到横幅详情
+     * @param bannerId
      */
     @Override
-    public List<BannerBean> listBanner(BannerSearchBean bannerSearchBean) {
+    public BannerBean getBannerDetail(Long bannerId){
+
+        if (bannerId == null){
+            logger.error("Fail to getBannerDetail ! bannerId must not be null !");
+            throw new ServiceException(-1, "bannerId 不能为空");
+        }
+
+        return (BannerBean) Optionals.transformBean(bannerDomainService.getBannerDetail(bannerId), BannerBean.class);
+    }
+
+    /**
+     * 列出横幅
+     * @param bannerSearchBean
+     */
+    @Override
+    public List<BannerBean> listBanner(BannerSearchBean bannerSearchBean){
 
         BannerSearch bannerSearch = new BannerSearch();
         if (bannerSearchBean != null) {
@@ -121,13 +117,12 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
     }
 
     /**
-     * 分页列出banner
+     * 分页列出横幅
      * @param bannerSearchBean
      * @param pagerListBean
-     * @return
      */
     @Override
-    public PagerListBean<BannerBean> listBannerByPage(BannerSearchBean bannerSearchBean, PagerListBean pagerListBean) {
+    public PagerListBean<BannerBean> listBannerByPage(BannerSearchBean bannerSearchBean, PagerListBean pagerListBean){
 
         BannerSearch bannerSearch = new BannerSearch();
         if (bannerSearchBean != null) {
@@ -137,5 +132,46 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         pagerListBean.setItems(BeanUtils.copyList(BannerBean.class, list.getItems()));
         pagerListBean.setTotal(list.getTotal());
         return pagerListBean;
+    }
+
+    /**
+     * 根据条件得到横幅
+     * @param bannerSearchBean
+     */
+    @Override
+    public BannerBean getBannerByCondition(BannerSearchBean bannerSearchBean){
+
+        BannerSearch bannerSearch = new BannerSearch();
+        if (bannerSearchBean != null) {
+            BeanUtils.copyProperties2(bannerSearch, bannerSearchBean);
+        }
+        Banner banner = bannerDomainService.getBannerByCondition(bannerSearch);
+        if (banner != null){
+            BannerBean bannerBean = new BannerBean();
+            BeanUtils.copyProperties2(bannerBean, banner);
+            return bannerBean;
+        }
+        return null;
+    }
+
+    /**
+     * 批量添加横幅
+     * @param bannerBeans
+     */
+    @Override
+    public void batchAddBanner(List<BannerBean> bannerBeans){
+
+        if (CollectionUtils.isEmpty(bannerBeans)){
+            logger.error("Fail to batchAddBanner ! bannerBeans must not be null !");
+            throw new ServiceException(-1, "bannerBeans 不能为空");
+        }
+        for (BannerBean bannerBean : bannerBeans){
+
+            if (bannerBean.getBannerName() == null){
+            logger.error("Fail to addBanner ! bannerName must not be null or empty!");
+                throw new ServiceException(-1, "banner名称 不能为空");
+            }
+        }
+        bannerDomainService.batchAddBanner(BeanUtils.copyList(Banner.class, bannerBeans));
     }
 }

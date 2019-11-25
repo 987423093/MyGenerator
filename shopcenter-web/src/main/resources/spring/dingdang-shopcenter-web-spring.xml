@@ -30,40 +30,6 @@
                      check="false"/>
     <!-- 声明需要暴露的服务接口 -->
 
-    <!-- 商城中心 -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.MallFacadeService"
-                   ref="mallFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="mallFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.MallFacadeServiceImpl"/>
-    <!-- banner -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.BannerFacadeService"
-                   ref="bannerFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="bannerFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.BannerFacadeServiceImpl"/>
-    <!-- 店铺 -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.ShopFacadeService"
-                   ref="shopFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="shopFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.ShopFacadeServiceImpl"/>
-    <!-- 商城栏目 -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.ColumnFacadeService"
-                   ref="columnFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="columnFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.ColumnFacadeServiceImpl"/>
-    <!-- 栏目商品关联 -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.ColumnGoodsFacadeService"
-                   ref="columnGoodsFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="columnGoodsFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.ColumnGoodsFacadeServiceImpl"/>
 
-    <!-- 快捷导航 -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.NavigationFacadeService"
-                   ref="navigationFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="navigationFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.NavigationFacadeServiceImpl"/>
-    <!-- 商城导航关联 -->
-    <dubbo:service interface="com.dingdang.shopcenter.common.facade.interfaces.MallNavigationFacadeService"
-                   ref="mallNavigationFacadeServiceImpl"
-                   timeout="20000"/>
-    <bean id="mallNavigationFacadeServiceImpl" class="com.dingdang.shopcenter.biz.service.impl.MallNavigationFacadeServiceImpl"/>
+
 </beans>

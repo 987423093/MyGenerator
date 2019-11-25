@@ -1,8 +1,10 @@
+
 package com.dingdang.shopcenter.biz.shop.repository.impl;
 
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.enums.StateEnum;
 import com.dingdang.commons.utils.Assert;
+import com.dingdang.commons.utils.CollectionUtils;
 import com.dingdang.commons.utils.StringUtils;
 import com.dingdang.shopcenter.biz.shop.condition.BannerSearch;
 import com.dingdang.shopcenter.biz.shop.dao.BannerMapper;
@@ -16,8 +18,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/9/30
+ * @author zhoutao's template
+ * @date 2019/11/25
  */
 @Repository
 public class BannerRepositoryImpl implements BannerRepository {
@@ -26,50 +28,39 @@ public class BannerRepositoryImpl implements BannerRepository {
     private BannerMapper bannerMapper;
 
     /**
-     * 增加banner
+     * 增加横幅
      * @param banner
      */
     @Override
-    public void addBanner(Banner banner) {
+    public Banner addBanner(Banner banner){
 
         Assert.notNull(banner, "banner must not be null !");
-        Assert.notNull(banner.getMallId(), "banner.getMallId() must not be null !");
+        Assert.notNull(banner.getBannerName(), "bannerName must not be null !");
         Optionals.setDefaultInsert(banner);
         bannerMapper.insert(banner);
+        return banner;
     }
 
     /**
-     * 修改banner
+     * 修改横幅
      * @param banner
      */
     @Override
-    public void modifyBanner(Banner banner) {
+    public Banner modifyBanner(Banner banner){
 
         Assert.notNull(banner, "banner must not be null !");
         Assert.notNull(banner.getBannerId(), "banner.getBannerId() must not be null !");
         Optionals.setDefaultModify(banner);
         bannerMapper.updateByPrimaryKeySelective(banner);
+        return banner;
     }
 
     /**
-     * 得到banner详情
-     * @param bannerId
-     * @return
-     */
+    * 移除横幅
+    * @param bannerId
+    */
     @Override
-    public Banner getBannerDetail(Long bannerId) {
-
-        Assert.notNull(bannerId, "bannerId must not be null !");
-        Banner banner = bannerMapper.selectByPrimaryKey(bannerId);
-        return (Banner) Optionals.getDefaultDetail(banner);
-    }
-
-    /**
-     * 移除banner
-     * @param bannerId
-     */
-    @Override
-    public void removeBanner(Long bannerId) {
+    public void removeBanner(Long bannerId){
 
         Assert.notNull(bannerId, "bannerId must not be null !");
         Banner banner = new Banner();
@@ -79,12 +70,23 @@ public class BannerRepositoryImpl implements BannerRepository {
     }
 
     /**
-     * 列出banner
-     * @param bannerSearch
-     * @return
+     * 得到横幅详情
+     * @param bannerId
      */
     @Override
-    public List<Banner> listBanner(BannerSearch bannerSearch) {
+    public Banner getBannerDetail(Long bannerId){
+
+        Assert.notNull(bannerId, "bannerId must not be null !");
+        Banner banner = bannerMapper.selectByPrimaryKey(bannerId);
+        return (Banner) Optionals.getDefaultDetail(banner);
+    }
+
+    /**
+     * 列出横幅
+     * @param bannerSearch
+     */
+    @Override
+    public List<Banner> listBanner(BannerSearch bannerSearch){
 
         BannerExample bannerExample = new BannerExample();
         this.setCondition(bannerExample, bannerSearch);
@@ -92,13 +94,12 @@ public class BannerRepositoryImpl implements BannerRepository {
     }
 
     /**
-     * 分页列出banner
+     * 分页列出横幅
      * @param bannerSearch
      * @param pagerListBean
-     * @return
      */
     @Override
-    public PagerListBean<Banner> listBannerByPage(BannerSearch bannerSearch, PagerListBean pagerListBean) {
+    public PagerListBean<Banner> listBannerByPage(BannerSearch bannerSearch, PagerListBean pagerListBean){
 
         BannerExample bannerExample = new BannerExample();
         this.setCondition(bannerExample, bannerSearch);
@@ -106,6 +107,36 @@ public class BannerRepositoryImpl implements BannerRepository {
         pagerListBean.setTotal((long) bannerMapper.countByExample(bannerExample));
         pagerListBean.setItems(bannerMapper.selectByExample(bannerExample));
         return pagerListBean;
+    }
+
+    /**
+     * 根据条件得到横幅
+     * @param bannerSearch
+     */
+    @Override
+    public Banner getBannerByCondition(BannerSearch bannerSearch){
+
+        BannerExample bannerExample = new BannerExample();
+        this.setCondition(bannerExample, bannerSearch);
+        List<Banner> banners = bannerMapper.selectByExample(bannerExample);
+        if (CollectionUtils.isNotEmpty(banners)){
+            return banners.get(0);
+        }
+        return null;
+    }
+
+    /**
+     * 批量添加横幅
+     * @param banners
+     */
+    @Override
+    public void batchAddBanner(List<Banner> banners){
+
+        for (Banner banner : banners){
+            Assert.notNull(banner.getBannerName(), "bannerName must not be null !");
+            Optionals.setDefaultInsert(banner);
+        }
+        bannerMapper.insertBatch(banners);
     }
 
     /**
@@ -117,14 +148,7 @@ public class BannerRepositoryImpl implements BannerRepository {
 
         BannerExample.Criteria criteria = bannerExample.createCriteria();
         if (bannerSearch != null) {
-            //banner名称
-            if (StringUtils.isNotBlank(bannerSearch.getBannerName())) {
-                criteria.andBannerNameLike("%" + bannerSearch.getBannerName() + "%");
-            }
-            //商城id
-            if (bannerSearch.getMallId() != null) {
-                criteria.andMallIdEqualTo(bannerSearch.getMallId());
-            }
+
         }
         criteria.andStateEqualTo(StateEnum.USE.getCode());
     }
