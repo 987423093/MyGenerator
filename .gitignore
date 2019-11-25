@@ -1,0 +1,14 @@
+*/target/
+.settings/
+.classpath
+.project
+*.log
+.idea/
+.idea/*
+*.iml
+.vagrant/
+.vagrant/*
+
+.DS_Store
+Thumbs.db
+Vagrantfile

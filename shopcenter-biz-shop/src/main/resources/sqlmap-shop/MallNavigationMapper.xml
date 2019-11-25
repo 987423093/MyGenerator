@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.shopcenter.biz.shop.dao.MallNavigationMapper" >
+        <resultMap id="BaseResultMap" type="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigation" >
+
+        <id column="MallNavigationId" property="mallNavigationId" jdbcType="BIGINT" />
+                    <result column="NavigationId" property="navigationId" jdbcType="BIGINT" />
+                    <result column="MallId" property="mallId" jdbcType="BIGINT" />
+                    <result column="Creator" property="creator" jdbcType="BIGINT" />
+                    <result column="CreateDate" property="createDate" jdbcType="TIMESTAMP" />
+                    <result column="Modifier" property="modifier" jdbcType="BIGINT" />
+                    <result column="ModifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+                    <result column="State" property="state" jdbcType="CHAR" />
+            </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        MallNavigationId,
+                NavigationId,
+                MallId,
+                Creator,
+                CreateDate,
+                Modifier,
+                ModifyDate,
+                State        
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigationExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from t_mall_navigation
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from t_mall_navigation
+        where MallNavigationId = #{mallNavigationId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from t_mall_navigation
+        where MallNavigationId = #{mallNavigationId,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigationExample" >
+        delete from t_mall_navigation
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+                <insert id="insert" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigation" useGeneratedKeys="true" keyProperty="mallNavigationId" >
+            insert into t_mall_navigation (
+                            NavigationId,
+                                        MallId,
+                                        Creator,
+                                        CreateDate,
+                                        Modifier,
+                                        ModifyDate,
+                                        State            )
+
+            values (
+                            #{navigationId,jdbcType=BIGINT},
+                                        #{mallId,jdbcType=BIGINT},
+                                        #{creator,jdbcType=BIGINT},
+                                        #{createDate,jdbcType=TIMESTAMP},
+                                        #{modifier,jdbcType=BIGINT},
+                                        #{modifyDate,jdbcType=TIMESTAMP},
+                                        #{state,jdbcType=CHAR}                        )
+        </insert>
+        <insert id="insertSelective" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigation" useGeneratedKeys="true" keyProperty="mallNavigationId" >
+            insert into t_mall_navigation
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                                    <if test="navigationId != null" >
+                        NavigationId,
+                    </if>
+                                    <if test="mallId != null" >
+                        MallId,
+                    </if>
+                                    <if test="creator != null" >
+                        Creator,
+                    </if>
+                                    <if test="createDate != null" >
+                        CreateDate,
+                    </if>
+                                    <if test="modifier != null" >
+                        Modifier,
+                    </if>
+                                    <if test="modifyDate != null" >
+                        ModifyDate,
+                    </if>
+                                    <if test="state != null" >
+                        State,
+                    </if>
+                            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                                    <if test="navigationId != null" >
+                        #{navigationId,jdbcType=BIGINT},
+                    </if>
+                                    <if test="mallId != null" >
+                        #{mallId,jdbcType=BIGINT},
+                    </if>
+                                    <if test="creator != null" >
+                        #{creator,jdbcType=BIGINT},
+                    </if>
+                                    <if test="createDate != null" >
+                        #{createDate,jdbcType=TIMESTAMP},
+                    </if>
+                                    <if test="modifier != null" >
+                        #{modifier,jdbcType=BIGINT},
+                    </if>
+                                    <if test="modifyDate != null" >
+                        #{modifyDate,jdbcType=TIMESTAMP},
+                    </if>
+                                    <if test="state != null" >
+                        #{state,jdbcType=CHAR},
+                    </if>
+                            </trim>
+
+        </insert>
+
+        <insert id="insertBatch" parameterType="java.util.List" >
+            insert into t_mall_navigation (
+                            NavigationId,
+                                        MallId,
+                                        Creator,
+                                        CreateDate,
+                                        Modifier,
+                                        ModifyDate,
+                                        State                        )
+            values
+            <foreach collection="list" item="item" index="index" separator="," >
+                (
+                                    #{item.navigationId,jdbcType=BIGINT},
+                                                    #{item.mallId,jdbcType=BIGINT},
+                                                    #{item.creator,jdbcType=BIGINT},
+                                                    #{item.createDate,jdbcType=TIMESTAMP},
+                                                    #{item.modifier,jdbcType=BIGINT},
+                                                    #{item.modifyDate,jdbcType=TIMESTAMP},
+                                                    #{item.state,jdbcType=CHAR}                
+                )
+            </foreach>
+        </insert>
+    
+    <select id="countByExample" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigationExample" resultType="java.lang.Integer" >
+        select count(*) from t_mall_navigation
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <select id="countGroupByExample" parameterType="Map" resultType="Map" >
+        select
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+        ,
+        <foreach collection="sumFields" item="item" index="index" separator="," >
+            count(${item}) as ${item}
+        </foreach>
+        from t_mall_navigation
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+        group by
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+    </select>
+
+
+
+    <select id="sumByExample" parameterType="Map" resultType="Map" >
+        select
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+        ,
+        <foreach collection="sumFields" item="item" index="index" separator="," >
+            sum(${item}) as ${item}
+        </foreach>
+        from t_mall_navigation
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+        group by
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+    </select>
+
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update t_mall_navigation
+        <set >
+                            <if test="record.mallNavigationId != null" >
+                    MallNavigationId = #{record.mallNavigationId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.navigationId != null" >
+                    NavigationId = #{record.navigationId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.mallId != null" >
+                    MallId = #{record.mallId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.creator != null" >
+                    Creator = #{record.creator,jdbcType=BIGINT},
+                </if>
+                            <if test="record.createDate != null" >
+                    CreateDate = #{record.createDate,jdbcType=TIMESTAMP},
+                </if>
+                            <if test="record.modifier != null" >
+                    Modifier = #{record.modifier,jdbcType=BIGINT},
+                </if>
+                            <if test="record.modifyDate != null" >
+                    ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+                </if>
+                            <if test="record.state != null" >
+                    State = #{record.state,jdbcType=CHAR},
+                </if>
+                    </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update t_mall_navigation
+        set         MallNavigationId = #{record.mallNavigationId,jdbcType=BIGINT},
+                NavigationId = #{record.navigationId,jdbcType=BIGINT},
+                MallId = #{record.mallId,jdbcType=BIGINT},
+                Creator = #{record.creator,jdbcType=BIGINT},
+                CreateDate = #{record.createDate,jdbcType=TIMESTAMP},
+                Modifier = #{record.modifier,jdbcType=BIGINT},
+                ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+                State = #{record.state,jdbcType=CHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigation" >
+        update t_mall_navigation
+        <set >
+                            <if test="navigationId != null" >
+                    NavigationId = #{navigationId,jdbcType=BIGINT},
+                  </if>                 <if test="mallId != null" >
+                    MallId = #{mallId,jdbcType=BIGINT},
+                  </if>                 <if test="creator != null" >
+                    Creator = #{creator,jdbcType=BIGINT},
+                  </if>                 <if test="createDate != null" >
+                    CreateDate = #{createDate,jdbcType=TIMESTAMP},
+                  </if>                 <if test="modifier != null" >
+                    Modifier = #{modifier,jdbcType=BIGINT},
+                  </if>                 <if test="modifyDate != null" >
+                    ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+                  </if>                 <if test="state != null" >
+                    State = #{state,jdbcType=CHAR}  </if>         </set>
+        where MallNavigationId = #{mallNavigationId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.MallNavigation" >
+        update t_mall_navigation
+        set
+                    NavigationId = #{navigationId,jdbcType=BIGINT},
+                            MallId = #{mallId,jdbcType=BIGINT},
+                            Creator = #{creator,jdbcType=BIGINT},
+                            CreateDate = #{createDate,jdbcType=TIMESTAMP},
+                            Modifier = #{modifier,jdbcType=BIGINT},
+                            ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+                            State = #{state,jdbcType=CHAR}        
+        where MallNavigationId = #{mallNavigationId,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,4 @@
+dubbo_registry_address=${dubbo_registry_address}
+dubbo_protocol_port=${dubbo_protocol_port}
+dubbo_protocol_name=${dubbo_protocol_name}
+dubbo_application_name=${dubbo_application_name}

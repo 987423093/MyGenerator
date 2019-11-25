@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.dingdang.shopcenter</groupId>
+    <artifactId>dingdang-shopcenter</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>shopcenter-common-facade</module>
+        <module>shopcenter-common-utils</module>
+        <module>shopcenter-common-integration</module>
+        <module>shopcenter-biz-share</module>
+        <module>shopcenter-biz-service-impl</module>
+        <module>shopcenter-biz-shop</module>
+        <module>shopcenter-web</module>
+    </modules>
+    <name>dingdang-shopcenter</name>
+
+    <parent>
+        <groupId>com.dingdang</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+    </dependencies>
+</project>

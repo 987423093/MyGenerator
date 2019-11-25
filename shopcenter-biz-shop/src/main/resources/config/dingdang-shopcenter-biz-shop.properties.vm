@@ -1,0 +1,13 @@
+shopcenter_db_url=${shopcenter_db_url}
+shopcenter_db_username=${shopcenter_db_username}
+shopcenter_db_password=${shopcenter_db_password}
+shopcenter_db_initialSize=${shopcenter_db_initialSize}
+shopcenter_db_maxActive=${shopcenter_db_maxActive}
+shopcenter_db_maxIdle=${shopcenter_db_maxIdle}
+shopcenter_db_minIdle=${shopcenter_db_minIdle}
+
+
+shopcenter_sequence_hostIndex=${shopcenter_sequence_hostIndex}
+shopcenter_sequence_step=${shopcenter_sequence_step}
+
+

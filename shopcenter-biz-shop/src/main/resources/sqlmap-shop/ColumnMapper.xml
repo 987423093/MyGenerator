@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.shopcenter.biz.shop.dao.ColumnMapper" >
+        <resultMap id="BaseResultMap" type="com.dingdang.shopcenter.biz.shop.dataobject.Column" >
+
+        <id column="ColumnId" property="columnId" jdbcType="BIGINT" />
+                    <result column="ColumnName" property="columnName" jdbcType="VARCHAR" />
+                    <result column="ColumnType" property="columnType" jdbcType="TINYINT" />
+                    <result column="Enable" property="enable" jdbcType="TINYINT" />
+                    <result column="MallId" property="mallId" jdbcType="BIGINT" />
+                    <result column="Direction" property="direction" jdbcType="VARCHAR" />
+                    <result column="SortNum" property="sortNum" jdbcType="INTEGER" />
+                    <result column="Style" property="style" jdbcType="VARCHAR" />
+                    <result column="Number" property="number" jdbcType="INTEGER" />
+                    <result column="ColumnUrl" property="columnUrl" jdbcType="VARCHAR" />
+                    <result column="ColumnImage" property="columnImage" jdbcType="VARCHAR" />
+                    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+                    <result column="Creator" property="creator" jdbcType="BIGINT" />
+                    <result column="Modifier" property="modifier" jdbcType="BIGINT" />
+                    <result column="CreateDate" property="createDate" jdbcType="TIMESTAMP" />
+                    <result column="ModifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+                    <result column="State" property="state" jdbcType="CHAR" />
+            </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        ColumnId,
+                ColumnName,
+                ColumnType,
+                Enable,
+                MallId,
+                Direction,
+                SortNum,
+                Style,
+                Number,
+                ColumnUrl,
+                ColumnImage,
+                Remark,
+                Creator,
+                Modifier,
+                CreateDate,
+                ModifyDate,
+                State        
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from t_mall_column
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from t_mall_column
+        where ColumnId = #{columnId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from t_mall_column
+        where ColumnId = #{columnId,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnExample" >
+        delete from t_mall_column
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+                <insert id="insert" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.Column" useGeneratedKeys="true" keyProperty="columnId" >
+            insert into t_mall_column (
+                            ColumnName,
+                                        ColumnType,
+                                        Enable,
+                                        MallId,
+                                        Direction,
+                                        SortNum,
+                                        Style,
+                                        Number,
+                                        ColumnUrl,
+                                        ColumnImage,
+                                        Remark,
+                                        Creator,
+                                        Modifier,
+                                        CreateDate,
+                                        ModifyDate,
+                                        State            )
+
+            values (
+                            #{columnName,jdbcType=VARCHAR},
+                                        #{columnType,jdbcType=TINYINT},
+                                        #{enable,jdbcType=TINYINT},
+                                        #{mallId,jdbcType=BIGINT},
+                                        #{direction,jdbcType=VARCHAR},
+                                        #{sortNum,jdbcType=INTEGER},
+                                        #{style,jdbcType=VARCHAR},
+                                        #{number,jdbcType=INTEGER},
+                                        #{columnUrl,jdbcType=VARCHAR},
+                                        #{columnImage,jdbcType=VARCHAR},
+                                        #{remark,jdbcType=VARCHAR},
+                                        #{creator,jdbcType=BIGINT},
+                                        #{modifier,jdbcType=BIGINT},
+                                        #{createDate,jdbcType=TIMESTAMP},
+                                        #{modifyDate,jdbcType=TIMESTAMP},
+                                        #{state,jdbcType=CHAR}                        )
+        </insert>
+        <insert id="insertSelective" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.Column" useGeneratedKeys="true" keyProperty="columnId" >
+            insert into t_mall_column
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                                    <if test="columnName != null" >
+                        ColumnName,
+                    </if>
+                                    <if test="columnType != null" >
+                        ColumnType,
+                    </if>
+                                    <if test="enable != null" >
+                        Enable,
+                    </if>
+                                    <if test="mallId != null" >
+                        MallId,
+                    </if>
+                                    <if test="direction != null" >
+                        Direction,
+                    </if>
+                                    <if test="sortNum != null" >
+                        SortNum,
+                    </if>
+                                    <if test="style != null" >
+                        Style,
+                    </if>
+                                    <if test="number != null" >
+                        Number,
+                    </if>
+                                    <if test="columnUrl != null" >
+                        ColumnUrl,
+                    </if>
+                                    <if test="columnImage != null" >
+                        ColumnImage,
+                    </if>
+                                    <if test="remark != null" >
+                        Remark,
+                    </if>
+                                    <if test="creator != null" >
+                        Creator,
+                    </if>
+                                    <if test="modifier != null" >
+                        Modifier,
+                    </if>
+                                    <if test="createDate != null" >
+                        CreateDate,
+                    </if>
+                                    <if test="modifyDate != null" >
+                        ModifyDate,
+                    </if>
+                                    <if test="state != null" >
+                        State,
+                    </if>
+                            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                                    <if test="columnName != null" >
+                        #{columnName,jdbcType=VARCHAR},
+                    </if>
+                                    <if test="columnType != null" >
+                        #{columnType,jdbcType=TINYINT},
+                    </if>
+                                    <if test="enable != null" >
+                        #{enable,jdbcType=TINYINT},
+                    </if>
+                                    <if test="mallId != null" >
+                        #{mallId,jdbcType=BIGINT},
+                    </if>
+                                    <if test="direction != null" >
+                        #{direction,jdbcType=VARCHAR},
+                    </if>
+                                    <if test="sortNum != null" >
+                        #{sortNum,jdbcType=INTEGER},
+                    </if>
+                                    <if test="style != null" >
+                        #{style,jdbcType=VARCHAR},
+                    </if>
+                                    <if test="number != null" >
+                        #{number,jdbcType=INTEGER},
+                    </if>
+                                    <if test="columnUrl != null" >
+                        #{columnUrl,jdbcType=VARCHAR},
+                    </if>
+                                    <if test="columnImage != null" >
+                        #{columnImage,jdbcType=VARCHAR},
+                    </if>
+                                    <if test="remark != null" >
+                        #{remark,jdbcType=VARCHAR},
+                    </if>
+                                    <if test="creator != null" >
+                        #{creator,jdbcType=BIGINT},
+                    </if>
+                                    <if test="modifier != null" >
+                        #{modifier,jdbcType=BIGINT},
+                    </if>
+                                    <if test="createDate != null" >
+                        #{createDate,jdbcType=TIMESTAMP},
+                    </if>
+                                    <if test="modifyDate != null" >
+                        #{modifyDate,jdbcType=TIMESTAMP},
+                    </if>
+                                    <if test="state != null" >
+                        #{state,jdbcType=CHAR},
+                    </if>
+                            </trim>
+
+        </insert>
+
+        <insert id="insertBatch" parameterType="java.util.List" >
+            insert into t_mall_column (
+                            ColumnName,
+                                        ColumnType,
+                                        Enable,
+                                        MallId,
+                                        Direction,
+                                        SortNum,
+                                        Style,
+                                        Number,
+                                        ColumnUrl,
+                                        ColumnImage,
+                                        Remark,
+                                        Creator,
+                                        Modifier,
+                                        CreateDate,
+                                        ModifyDate,
+                                        State                        )
+            values
+            <foreach collection="list" item="item" index="index" separator="," >
+                (
+                                    #{item.columnName,jdbcType=VARCHAR},
+                                                    #{item.columnType,jdbcType=TINYINT},
+                                                    #{item.enable,jdbcType=TINYINT},
+                                                    #{item.mallId,jdbcType=BIGINT},
+                                                    #{item.direction,jdbcType=VARCHAR},
+                                                    #{item.sortNum,jdbcType=INTEGER},
+                                                    #{item.style,jdbcType=VARCHAR},
+                                                    #{item.number,jdbcType=INTEGER},
+                                                    #{item.columnUrl,jdbcType=VARCHAR},
+                                                    #{item.columnImage,jdbcType=VARCHAR},
+                                                    #{item.remark,jdbcType=VARCHAR},
+                                                    #{item.creator,jdbcType=BIGINT},
+                                                    #{item.modifier,jdbcType=BIGINT},
+                                                    #{item.createDate,jdbcType=TIMESTAMP},
+                                                    #{item.modifyDate,jdbcType=TIMESTAMP},
+                                                    #{item.state,jdbcType=CHAR}                
+                )
+            </foreach>
+        </insert>
+    
+    <select id="countByExample" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnExample" resultType="java.lang.Integer" >
+        select count(*) from t_mall_column
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <select id="countGroupByExample" parameterType="Map" resultType="Map" >
+        select
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+        ,
+        <foreach collection="sumFields" item="item" index="index" separator="," >
+            count(${item}) as ${item}
+        </foreach>
+        from t_mall_column
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+        group by
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+    </select>
+
+
+
+    <select id="sumByExample" parameterType="Map" resultType="Map" >
+        select
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+        ,
+        <foreach collection="sumFields" item="item" index="index" separator="," >
+            sum(${item}) as ${item}
+        </foreach>
+        from t_mall_column
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+        group by
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+    </select>
+
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update t_mall_column
+        <set >
+                            <if test="record.columnId != null" >
+                    ColumnId = #{record.columnId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.columnName != null" >
+                    ColumnName = #{record.columnName,jdbcType=VARCHAR},
+                </if>
+                            <if test="record.columnType != null" >
+                    ColumnType = #{record.columnType,jdbcType=TINYINT},
+                </if>
+                            <if test="record.enable != null" >
+                    Enable = #{record.enable,jdbcType=TINYINT},
+                </if>
+                            <if test="record.mallId != null" >
+                    MallId = #{record.mallId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.direction != null" >
+                    Direction = #{record.direction,jdbcType=VARCHAR},
+                </if>
+                            <if test="record.sortNum != null" >
+                    SortNum = #{record.sortNum,jdbcType=INTEGER},
+                </if>
+                            <if test="record.style != null" >
+                    Style = #{record.style,jdbcType=VARCHAR},
+                </if>
+                            <if test="record.number != null" >
+                    Number = #{record.number,jdbcType=INTEGER},
+                </if>
+                            <if test="record.columnUrl != null" >
+                    ColumnUrl = #{record.columnUrl,jdbcType=VARCHAR},
+                </if>
+                            <if test="record.columnImage != null" >
+                    ColumnImage = #{record.columnImage,jdbcType=VARCHAR},
+                </if>
+                            <if test="record.remark != null" >
+                    Remark = #{record.remark,jdbcType=VARCHAR},
+                </if>
+                            <if test="record.creator != null" >
+                    Creator = #{record.creator,jdbcType=BIGINT},
+                </if>
+                            <if test="record.modifier != null" >
+                    Modifier = #{record.modifier,jdbcType=BIGINT},
+                </if>
+                            <if test="record.createDate != null" >
+                    CreateDate = #{record.createDate,jdbcType=TIMESTAMP},
+                </if>
+                            <if test="record.modifyDate != null" >
+                    ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+                </if>
+                            <if test="record.state != null" >
+                    State = #{record.state,jdbcType=CHAR},
+                </if>
+                    </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update t_mall_column
+        set         ColumnId = #{record.columnId,jdbcType=BIGINT},
+                ColumnName = #{record.columnName,jdbcType=VARCHAR},
+                ColumnType = #{record.columnType,jdbcType=TINYINT},
+                Enable = #{record.enable,jdbcType=TINYINT},
+                MallId = #{record.mallId,jdbcType=BIGINT},
+                Direction = #{record.direction,jdbcType=VARCHAR},
+                SortNum = #{record.sortNum,jdbcType=INTEGER},
+                Style = #{record.style,jdbcType=VARCHAR},
+                Number = #{record.number,jdbcType=INTEGER},
+                ColumnUrl = #{record.columnUrl,jdbcType=VARCHAR},
+                ColumnImage = #{record.columnImage,jdbcType=VARCHAR},
+                Remark = #{record.remark,jdbcType=VARCHAR},
+                Creator = #{record.creator,jdbcType=BIGINT},
+                Modifier = #{record.modifier,jdbcType=BIGINT},
+                CreateDate = #{record.createDate,jdbcType=TIMESTAMP},
+                ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+                State = #{record.state,jdbcType=CHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.Column" >
+        update t_mall_column
+        <set >
+                            <if test="columnName != null" >
+                    ColumnName = #{columnName,jdbcType=VARCHAR},
+                  </if>                 <if test="columnType != null" >
+                    ColumnType = #{columnType,jdbcType=TINYINT},
+                  </if>                 <if test="enable != null" >
+                    Enable = #{enable,jdbcType=TINYINT},
+                  </if>                 <if test="mallId != null" >
+                    MallId = #{mallId,jdbcType=BIGINT},
+                  </if>                 <if test="direction != null" >
+                    Direction = #{direction,jdbcType=VARCHAR},
+                  </if>                 <if test="sortNum != null" >
+                    SortNum = #{sortNum,jdbcType=INTEGER},
+                  </if>                 <if test="style != null" >
+                    Style = #{style,jdbcType=VARCHAR},
+                  </if>                 <if test="number != null" >
+                    Number = #{number,jdbcType=INTEGER},
+                  </if>                 <if test="columnUrl != null" >
+                    ColumnUrl = #{columnUrl,jdbcType=VARCHAR},
+                  </if>                 <if test="columnImage != null" >
+                    ColumnImage = #{columnImage,jdbcType=VARCHAR},
+                  </if>                 <if test="remark != null" >
+                    Remark = #{remark,jdbcType=VARCHAR},
+                  </if>                 <if test="creator != null" >
+                    Creator = #{creator,jdbcType=BIGINT},
+                  </if>                 <if test="modifier != null" >
+                    Modifier = #{modifier,jdbcType=BIGINT},
+                  </if>                 <if test="createDate != null" >
+                    CreateDate = #{createDate,jdbcType=TIMESTAMP},
+                  </if>                 <if test="modifyDate != null" >
+                    ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+                  </if>                 <if test="state != null" >
+                    State = #{state,jdbcType=CHAR}  </if>         </set>
+        where ColumnId = #{columnId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.Column" >
+        update t_mall_column
+        set
+                    ColumnName = #{columnName,jdbcType=VARCHAR},
+                            ColumnType = #{columnType,jdbcType=TINYINT},
+                            Enable = #{enable,jdbcType=TINYINT},
+                            MallId = #{mallId,jdbcType=BIGINT},
+                            Direction = #{direction,jdbcType=VARCHAR},
+                            SortNum = #{sortNum,jdbcType=INTEGER},
+                            Style = #{style,jdbcType=VARCHAR},
+                            Number = #{number,jdbcType=INTEGER},
+                            ColumnUrl = #{columnUrl,jdbcType=VARCHAR},
+                            ColumnImage = #{columnImage,jdbcType=VARCHAR},
+                            Remark = #{remark,jdbcType=VARCHAR},
+                            Creator = #{creator,jdbcType=BIGINT},
+                            Modifier = #{modifier,jdbcType=BIGINT},
+                            CreateDate = #{createDate,jdbcType=TIMESTAMP},
+                            ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+                            State = #{state,jdbcType=CHAR}        
+        where ColumnId = #{columnId,jdbcType=BIGINT}
+    </update>
+</mapper>

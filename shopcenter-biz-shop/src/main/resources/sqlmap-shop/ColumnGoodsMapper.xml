@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.shopcenter.biz.shop.dao.ColumnGoodsMapper" >
+        <resultMap id="BaseResultMap" type="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoods" >
+
+        <id column="ColumnGoodsId" property="columnGoodsId" jdbcType="BIGINT" />
+                    <result column="ColumnId" property="columnId" jdbcType="BIGINT" />
+                    <result column="GoodsId" property="goodsId" jdbcType="BIGINT" />
+                    <result column="SortNum" property="sortNum" jdbcType="INTEGER" />
+                    <result column="Creator" property="creator" jdbcType="BIGINT" />
+                    <result column="Modifier" property="modifier" jdbcType="BIGINT" />
+                    <result column="CreateDate" property="createDate" jdbcType="TIMESTAMP" />
+                    <result column="ModifyDate" property="modifyDate" jdbcType="TIMESTAMP" />
+                    <result column="State" property="state" jdbcType="CHAR" />
+            </resultMap>
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        ColumnGoodsId,
+                ColumnId,
+                GoodsId,
+                SortNum,
+                Creator,
+                Modifier,
+                CreateDate,
+                ModifyDate,
+                State        
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoodsExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from t_column_goods
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from t_column_goods
+        where ColumnGoodsId = #{columnGoodsId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from t_column_goods
+        where ColumnGoodsId = #{columnGoodsId,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoodsExample" >
+        delete from t_column_goods
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+                <insert id="insert" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoods" useGeneratedKeys="true" keyProperty="columnGoodsId" >
+            insert into t_column_goods (
+                            ColumnId,
+                                        GoodsId,
+                                        SortNum,
+                                        Creator,
+                                        Modifier,
+                                        CreateDate,
+                                        ModifyDate,
+                                        State            )
+
+            values (
+                            #{columnId,jdbcType=BIGINT},
+                                        #{goodsId,jdbcType=BIGINT},
+                                        #{sortNum,jdbcType=INTEGER},
+                                        #{creator,jdbcType=BIGINT},
+                                        #{modifier,jdbcType=BIGINT},
+                                        #{createDate,jdbcType=TIMESTAMP},
+                                        #{modifyDate,jdbcType=TIMESTAMP},
+                                        #{state,jdbcType=CHAR}                        )
+        </insert>
+        <insert id="insertSelective" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoods" useGeneratedKeys="true" keyProperty="columnGoodsId" >
+            insert into t_column_goods
+            <trim prefix="(" suffix=")" suffixOverrides="," >
+                                    <if test="columnId != null" >
+                        ColumnId,
+                    </if>
+                                    <if test="goodsId != null" >
+                        GoodsId,
+                    </if>
+                                    <if test="sortNum != null" >
+                        SortNum,
+                    </if>
+                                    <if test="creator != null" >
+                        Creator,
+                    </if>
+                                    <if test="modifier != null" >
+                        Modifier,
+                    </if>
+                                    <if test="createDate != null" >
+                        CreateDate,
+                    </if>
+                                    <if test="modifyDate != null" >
+                        ModifyDate,
+                    </if>
+                                    <if test="state != null" >
+                        State,
+                    </if>
+                            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides="," >
+                                    <if test="columnId != null" >
+                        #{columnId,jdbcType=BIGINT},
+                    </if>
+                                    <if test="goodsId != null" >
+                        #{goodsId,jdbcType=BIGINT},
+                    </if>
+                                    <if test="sortNum != null" >
+                        #{sortNum,jdbcType=INTEGER},
+                    </if>
+                                    <if test="creator != null" >
+                        #{creator,jdbcType=BIGINT},
+                    </if>
+                                    <if test="modifier != null" >
+                        #{modifier,jdbcType=BIGINT},
+                    </if>
+                                    <if test="createDate != null" >
+                        #{createDate,jdbcType=TIMESTAMP},
+                    </if>
+                                    <if test="modifyDate != null" >
+                        #{modifyDate,jdbcType=TIMESTAMP},
+                    </if>
+                                    <if test="state != null" >
+                        #{state,jdbcType=CHAR},
+                    </if>
+                            </trim>
+
+        </insert>
+
+        <insert id="insertBatch" parameterType="java.util.List" >
+            insert into t_column_goods (
+                            ColumnId,
+                                        GoodsId,
+                                        SortNum,
+                                        Creator,
+                                        Modifier,
+                                        CreateDate,
+                                        ModifyDate,
+                                        State                        )
+            values
+            <foreach collection="list" item="item" index="index" separator="," >
+                (
+                                    #{item.columnId,jdbcType=BIGINT},
+                                                    #{item.goodsId,jdbcType=BIGINT},
+                                                    #{item.sortNum,jdbcType=INTEGER},
+                                                    #{item.creator,jdbcType=BIGINT},
+                                                    #{item.modifier,jdbcType=BIGINT},
+                                                    #{item.createDate,jdbcType=TIMESTAMP},
+                                                    #{item.modifyDate,jdbcType=TIMESTAMP},
+                                                    #{item.state,jdbcType=CHAR}                
+                )
+            </foreach>
+        </insert>
+    
+    <select id="countByExample" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoodsExample" resultType="java.lang.Integer" >
+        select count(*) from t_column_goods
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <select id="countGroupByExample" parameterType="Map" resultType="Map" >
+        select
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+        ,
+        <foreach collection="sumFields" item="item" index="index" separator="," >
+            count(${item}) as ${item}
+        </foreach>
+        from t_column_goods
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+        group by
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+    </select>
+
+
+
+    <select id="sumByExample" parameterType="Map" resultType="Map" >
+        select
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+        ,
+        <foreach collection="sumFields" item="item" index="index" separator="," >
+            sum(${item}) as ${item}
+        </foreach>
+        from t_column_goods
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+        group by
+        <foreach collection="groupByFields" item="item" index="index" separator="," >
+            ${item}
+        </foreach>
+    </select>
+
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update t_column_goods
+        <set >
+                            <if test="record.columnGoodsId != null" >
+                    ColumnGoodsId = #{record.columnGoodsId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.columnId != null" >
+                    ColumnId = #{record.columnId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.goodsId != null" >
+                    GoodsId = #{record.goodsId,jdbcType=BIGINT},
+                </if>
+                            <if test="record.sortNum != null" >
+                    SortNum = #{record.sortNum,jdbcType=INTEGER},
+                </if>
+                            <if test="record.creator != null" >
+                    Creator = #{record.creator,jdbcType=BIGINT},
+                </if>
+                            <if test="record.modifier != null" >
+                    Modifier = #{record.modifier,jdbcType=BIGINT},
+                </if>
+                            <if test="record.createDate != null" >
+                    CreateDate = #{record.createDate,jdbcType=TIMESTAMP},
+                </if>
+                            <if test="record.modifyDate != null" >
+                    ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+                </if>
+                            <if test="record.state != null" >
+                    State = #{record.state,jdbcType=CHAR},
+                </if>
+                    </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update t_column_goods
+        set         ColumnGoodsId = #{record.columnGoodsId,jdbcType=BIGINT},
+                ColumnId = #{record.columnId,jdbcType=BIGINT},
+                GoodsId = #{record.goodsId,jdbcType=BIGINT},
+                SortNum = #{record.sortNum,jdbcType=INTEGER},
+                Creator = #{record.creator,jdbcType=BIGINT},
+                Modifier = #{record.modifier,jdbcType=BIGINT},
+                CreateDate = #{record.createDate,jdbcType=TIMESTAMP},
+                ModifyDate = #{record.modifyDate,jdbcType=TIMESTAMP},
+                State = #{record.state,jdbcType=CHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoods" >
+        update t_column_goods
+        <set >
+                            <if test="columnId != null" >
+                    ColumnId = #{columnId,jdbcType=BIGINT},
+                  </if>                 <if test="goodsId != null" >
+                    GoodsId = #{goodsId,jdbcType=BIGINT},
+                  </if>                 <if test="sortNum != null" >
+                    SortNum = #{sortNum,jdbcType=INTEGER},
+                  </if>                 <if test="creator != null" >
+                    Creator = #{creator,jdbcType=BIGINT},
+                  </if>                 <if test="modifier != null" >
+                    Modifier = #{modifier,jdbcType=BIGINT},
+                  </if>                 <if test="createDate != null" >
+                    CreateDate = #{createDate,jdbcType=TIMESTAMP},
+                  </if>                 <if test="modifyDate != null" >
+                    ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+                  </if>                 <if test="state != null" >
+                    State = #{state,jdbcType=CHAR}  </if>         </set>
+        where ColumnGoodsId = #{columnGoodsId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dingdang.shopcenter.biz.shop.dataobject.ColumnGoods" >
+        update t_column_goods
+        set
+                    ColumnId = #{columnId,jdbcType=BIGINT},
+                            GoodsId = #{goodsId,jdbcType=BIGINT},
+                            SortNum = #{sortNum,jdbcType=INTEGER},
+                            Creator = #{creator,jdbcType=BIGINT},
+                            Modifier = #{modifier,jdbcType=BIGINT},
+                            CreateDate = #{createDate,jdbcType=TIMESTAMP},
+                            ModifyDate = #{modifyDate,jdbcType=TIMESTAMP},
+                            State = #{state,jdbcType=CHAR}        
+        where ColumnGoodsId = #{columnGoodsId,jdbcType=BIGINT}
+    </update>
+</mapper>
