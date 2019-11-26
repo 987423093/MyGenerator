@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * @author zhoutao's template
- * @date 2019/11/25
+ * @date 2019/11/26
  */
 @Repository
 public class BannerRepositoryImpl implements BannerRepository {
@@ -35,7 +35,6 @@ public class BannerRepositoryImpl implements BannerRepository {
     public Banner addBanner(Banner banner){
 
         Assert.notNull(banner, "banner must not be null !");
-        Assert.notNull(banner.getBannerName(), "bannerName must not be null !");
         Optionals.setDefaultInsert(banner);
         bannerMapper.insert(banner);
         return banner;
@@ -133,7 +132,6 @@ public class BannerRepositoryImpl implements BannerRepository {
     public void batchAddBanner(List<Banner> banners){
 
         for (Banner banner : banners){
-            Assert.notNull(banner.getBannerName(), "bannerName must not be null !");
             Optionals.setDefaultInsert(banner);
         }
         bannerMapper.insertBatch(banners);

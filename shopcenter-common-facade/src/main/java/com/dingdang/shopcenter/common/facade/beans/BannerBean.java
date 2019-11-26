@@ -4,10 +4,11 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * @author zhoutao's template
- * @date 2019/11/25
+ * @date 2019/11/26
  */
 @Data
 public class BannerBean implements Serializable {

@@ -194,10 +194,34 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     public void createAll() {
 
         this.createDBObject();
-        this.createBeans();
-        this.createClazz();
+        this.createCenter();
+        this.createServer();
         this.getDubboConfig();
     }
+
+    /**
+     * 创建所有中心层
+     */
+    @Override
+    public void createCenter() {
+
+        this.createBeans();
+        this.createClazz();
+    }
+
+    /**
+     * 创建所有接口层
+     */
+    @Override
+    public void createServer() {
+
+        this.createParam();
+        this.createParamSearch();
+        this.createResult();
+        this.createIntegration();
+        this.createIntegrationImpl();
+    }
+
     /**
      * 创建数据库对象
      */
@@ -236,24 +260,21 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     }
 
     /**
-     * 创建所有接口层
-     */
-    @Override
-    public void createAllWeb() {
-
-        this.createParam();
-        this.createResult();
-        this.createIntegration();
-        this.createIntegrationImpl();
-    }
-
-    /**
      * 创建param
      */
     public void createParam(){
 
         String filePath = myFreemarkerEnv.getParamFilePath() + "\\" + argObj + "Param.java";
         beforeCreateFile(filePath, myFreemarkerEnv.getParamTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建paramSearch
+     */
+    public void createParamSearch(){
+
+        String filePath = myFreemarkerEnv.getSearchParamFilePath() + "\\" + argObj + "SearchParam.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getSearchParamTemplatePath(), argName, argCN);
     }
 
     /**
@@ -675,14 +696,24 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
             sb.append("domain");
         }else if (path.contains("SearchBean")){
             sb.append("searchBean");
+        }else if (path.contains("SearchParam")) {
+            sb.append("searchParam");
         }else if (path.contains("Search")){
             sb.append("search");
         }else if (path.contains("Bean")){
             sb.append("bean");
         }else if (path.contains("Condition")){
             sb.append("condition");
-        }else{
-            sb.append("undefined");
+        }else if (path.contains("Param")) {
+            sb.append("param");
+        }else if (path.contains("Result")) {
+            sb.append("result");
+        }else if (path.contains("IntegrationImpl")) {
+            sb.append("integrationImpl");
+        }else if (path.contains("Integration")) {
+            sb.append("integration");
+        }else {
+             sb.append("undefined");
         }
         if (type == 1){
             sb.append("开始创建---");

@@ -1,10 +1,10 @@
-package com.${company}.${projectName}.common.integration.${packageName};
+<#assign argObj = "${argName}"?cap_first>
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration;
 
 import com.${company}.commons.basic.PagerListBean;
-import com.${company}.${projectName}.common.integration.${packageName}.param.${argObj}Param;
-import com.${company}.${projectName}.common.integration.${packageName}.param.${argObj}SearchParam;
-import com.${company}.${projectName}.common.integration.${packageName}.result.${argObj}Result;
-
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}SearchParam;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}Param;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.result.${argObj}Result;
 import java.util.List;
 
 /**
@@ -17,13 +17,13 @@ public interface ${argObj}IntegrationService {
      * 新增${argCN}
      * @param ${argName}Param
      */
-    void add${argObj}(${argObj}Param ${argName}Param);
+    ${argObj}Result add${argObj}(${argObj}Param ${argName}Param);
     
     /**
      * 修改${argCN}
      * @param ${argName}Param
      */
-    void modify${argObj}(${argObj}Param ${argName}Param);
+    ${argObj}Result modify${argObj}(${argObj}Param ${argName}Param);
     
     /**
      * 删除${argCN}
@@ -52,4 +52,10 @@ public interface ${argObj}IntegrationService {
      * @return
      */
     List<${argObj}Result> list${argObj}(${argObj}SearchParam ${argName}SearchParam);
+
+    /**
+     * 批量添加${argCN}
+     * @param ${argName}Params
+     */
+    void batchAdd${argObj}(List<${argObj}Param> ${argName}Params);
 }

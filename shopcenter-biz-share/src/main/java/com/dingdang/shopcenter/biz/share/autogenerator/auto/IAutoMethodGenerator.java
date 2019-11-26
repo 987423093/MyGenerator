@@ -109,6 +109,16 @@ public interface IAutoMethodGenerator {
     void createAll();
 
     /**
+     * 创建所有中心层
+     */
+    void createCenter();
+
+    /**
+     * 创建所有接口层
+     */
+    void createServer();
+
+    /**
      * 创建数据库对象
      */
     void createDBObject();
@@ -117,11 +127,6 @@ public interface IAutoMethodGenerator {
      * 创建增删改查的业务类
      */
     void createClazz();
-
-    /**
-     * 创建所有接口层
-     */
-    void createAllWeb();
 
     /**
      * 得到dubbo配置

@@ -24,10 +24,6 @@
     <!-- dubbo监控地址 -->
     <dubbo:monitor protocol="registry"/>
 
-    <!-- 引入需要的dubbo服务 -->
-    <dubbo:reference id="baseConfigFacade"
-                     interface="com.dingdang.base.configcenter.facade.interfaces.BaseConfigFacade"
-                     check="false"/>
     <!-- 声明需要暴露的服务接口 -->
 
 

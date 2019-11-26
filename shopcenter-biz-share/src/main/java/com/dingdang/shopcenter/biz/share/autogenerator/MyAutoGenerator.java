@@ -1,10 +1,6 @@
 package com.dingdang.shopcenter.biz.share.autogenerator;
 
 import com.dingdang.shopcenter.biz.share.autogenerator.auto.*;
-import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.condition.BannerConditions;
-import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.condition.ShopConditions;
-import com.dingdang.shopcenter.biz.share.autogenerator.utils.MyObject;
-import com.dingdang.shopcenter.biz.share.autogenerator.utils.MyObjectTypeEnum;
 
 /**
  * @author zhoutao
@@ -58,6 +54,5 @@ public class MyAutoGenerator {
      */
     private static void setCondition(IAutoMethodGenerator autoMethodGenerator){
 
-        autoMethodGenerator.addMustCondition(BannerConditions.bannerName);
     }
 }

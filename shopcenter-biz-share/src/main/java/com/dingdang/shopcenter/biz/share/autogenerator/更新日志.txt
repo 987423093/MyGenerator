@@ -136,3 +136,10 @@ MyFreemarkerGenerator1.1 初版开发完成
 2.主键写死问题修改
 3.facadeImpl 字段统一化，防止枚举丢失
 4.Optionals添加transformBean 重复代码优化
+5.新增批量添加 batchAdd
+6.add和modify 提供返回值
+
+-version-3.2
+2019-11-26
+1.integration,impl,param,result生成
+2.已知bug修复

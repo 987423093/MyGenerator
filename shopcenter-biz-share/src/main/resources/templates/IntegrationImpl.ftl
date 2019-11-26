@@ -1,15 +1,16 @@
 <#assign argObj = "${argName}"?cap_first>
-package com.${company}.${projectName}.common.integration.${packageName}.impl;
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.impl;
 
-import com.${company}.commons.basic.PagerListBean;
-import com.${company}.commons.utils.BeanUtils;
-import com.${company}.${projectName}.common.integration.${packageName}.${argObj}IntegrationService;
-import com.${company}.${projectName}.common.integration.${packageName}.param.${argObj}Param;
-import com.${company}.${projectName}.common.integration.${packageName}.param.${argObj}SearchParam;
-import com.${company}.${projectName}.common.integration.${packageName}.result.${argObj}Result;
+import com.dingdang.commons.basic.PagerListBean;
+import com.dingdang.commons.utils.BeanUtils;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.${argObj}IntegrationService;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}Param;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}SearchParam;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.result.${argObj}Result;
 import com.${company}.${argCenter}.common.facade.beans.${argObj}Bean;
 import com.${company}.${argCenter}.common.facade.beans.${argObj}SearchBean;
 import com.${company}.${argCenter}.common.facade.interfaces.${argObj}FacadeService;
+import com.${company}.${argCenter}.common.utils.Optionals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,11 +31,11 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
      * @param ${argName}Param
      */
     @Override
-    public void add${argObj}(${argObj}Param ${argName}Param) {
+    public ${argObj}Result add${argObj}(${argObj}Param ${argName}Param) {
 
         ${argObj}Bean ${argName}Bean = new ${argObj}Bean();
         BeanUtils.copyProperties2(${argName}Bean, ${argName}Param);
-        ${argName}FacadeService.add${argObj}(${argName}Bean);
+        return (${argObj}Result) Optionals.transformBean(${argName}FacadeService.add${argObj}(${argName}Bean), ${argObj}Result.class);
     }
 
     /**
@@ -42,11 +43,11 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
      * @param ${argName}Param
      */
     @Override
-    public void modify${argObj}(${argObj}Param ${argName}Param) {
+    public ${argObj}Result modify${argObj}(${argObj}Param ${argName}Param) {
 
         ${argObj}Bean ${argName}Bean = new ${argObj}Bean();
         BeanUtils.copyProperties2(${argName}Bean, ${argName}Param);
-        ${argName}FacadeService.modify${argObj}(${argName}Bean);
+        return (${argObj}Result) Optionals.transformBean(${argName}FacadeService.modify${argObj}(${argName}Bean), ${argObj}Result.class);
     }
 
     /**
@@ -67,13 +68,7 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
     @Override
     public ${argObj}Result get${argObj}Detail(Long ${primaryObject.ename}) {
 
-        ${argObj}Bean ${argName}Bean = ${argName}FacadeService.get${argObj}Detail(${primaryObject.ename});
-        if (${argName}Bean != null) {
-            ${argObj}Result ${argName}Result = new ${argObj}Result();
-            BeanUtils.copyProperties2(${argName}Result, ${argName}Bean);
-            return ${argName}Result;
-        }
-        return null;
+        return (${argObj}Result) Optionals.transformBean(${argName}FacadeService.get${argObj}Detail(${primaryObject.ename}), ${argObj}Result.class);
     }
 
     /**
@@ -108,5 +103,15 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
            BeanUtils.copyProperties2(${argName}SearchBean, ${argName}SearchParam);
         }
         return BeanUtils.copyList(${argObj}Result.class, ${argName}FacadeService.list${argObj}(${argName}SearchBean));
+    }
+
+    /**
+     * 批量添加${argCN}
+     * @param ${argName}Params
+     */
+    @Override
+    public void batchAdd${argObj}(List<${argObj}Param> ${argName}Params){
+
+        ${argName}FacadeService.batchAdd${argObj}(BeanUtils.copyList(${argObj}Bean.class, ${argName}Params));
     }
 }

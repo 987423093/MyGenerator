@@ -150,6 +150,16 @@ public class MyFreemarkerEnv implements IAutoEnv {
     private String paramTemplatePath;
 
     /**
+     * searchParamSearch代码生成的路径
+     */
+    private String searchParamFilePath;
+
+    /**
+     * searchParam引用的模板
+     */
+    private String searchParamTemplatePath;
+
+    /**
      * result代码生成的路径
      */
     private String resultFilePath;
@@ -158,7 +168,6 @@ public class MyFreemarkerEnv implements IAutoEnv {
      * result引用的模板
      */
     private String resultTemplatePath;
-
 
     /**
      * integration代码生成的路径
@@ -259,15 +268,17 @@ public class MyFreemarkerEnv implements IAutoEnv {
         this.searchFilePath = basePath + "\\" + itemCenter + "-biz-" + item + "\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\" + item + "\\condition";
         this.searchTemplatePath = "/Search.ftl";
 
-        //接口层模板路径 TODO
-        /*this.paramFilePath = "";
-        this.paramTemplatePath = "";
-        this.resultFilePath = "";
-        this.resultTemplatePath = "";
-        this.integrationFilePath = "";
-        this.integrationTemplatePath = "";
-        this.integrationImplFilePath = "";
-        this.integrationImplTemplatePath = "";*/
+        //接口层模板路径
+        this.paramFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\param";
+        this.paramTemplatePath = "/Param.ftl";
+        this.searchParamFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\param";
+        this.searchParamTemplatePath = "/SearchParam.ftl";
+        this.resultFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\result";
+        this.resultTemplatePath = "/Result.ftl";
+        this.integrationFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration";
+        this.integrationTemplatePath = "/Integration.ftl";
+        this.integrationImplFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\impl";
+        this.integrationImplTemplatePath = "/IntegrationImpl.ftl";
     }
 
     public String getItemCenter() {
@@ -388,6 +399,14 @@ public class MyFreemarkerEnv implements IAutoEnv {
 
     public String getParamTemplatePath() {
         return paramTemplatePath;
+    }
+
+    public String getSearchParamFilePath() {
+        return searchParamFilePath;
+    }
+
+    public String getSearchParamTemplatePath() {
+        return searchParamTemplatePath;
     }
 
     public String getResultFilePath() {

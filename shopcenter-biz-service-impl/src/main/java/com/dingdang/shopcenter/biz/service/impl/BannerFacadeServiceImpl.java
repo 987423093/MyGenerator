@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * @author zhoutao's template
- * @date 2019/11/25
+ * @date 2019/11/26
  */
 @Service
 public class BannerFacadeServiceImpl implements BannerFacadeService {
@@ -40,10 +40,6 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         if (bannerBean == null){
             logger.error("Fail to addBanner ! bannerBean must not be null !");
             throw new ServiceException(-1, "bannerBean 不能为空");
-        }
-        if (bannerBean.getBannerName() == null){
-            logger.error("Fail to addBanner ! bannerName must not be null or empty!");
-            throw new ServiceException(-1, "banner名称 不能为空");
         }
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
@@ -154,12 +150,6 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         if (CollectionUtils.isEmpty(bannerBeans)){
             logger.error("Fail to batchAddBanner ! bannerBeans must not be null !");
             throw new ServiceException(-1, "bannerBeans 不能为空");
-        }
-        for (BannerBean bannerBean : bannerBeans){
-            if (bannerBean.getBannerName() == null){
-            logger.error("Fail to addBanner ! bannerName must not be null or empty!");
-                throw new ServiceException(-1, "banner名称 不能为空");
-            }
         }
         bannerDomainService.batchAddBanner(BeanUtils.copyList(Banner.class, bannerBeans));
     }

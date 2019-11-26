@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zhoutao's template
- * @date 2019/11/25
+ * @date 2019/11/26
  */
 @Data
 public class BannerSearchBean implements Serializable {

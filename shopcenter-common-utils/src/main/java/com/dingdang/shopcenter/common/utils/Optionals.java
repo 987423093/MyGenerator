@@ -2,11 +2,12 @@ package com.dingdang.shopcenter.common.utils;
 
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.enums.StateEnum;
+import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.commons.utils.BeanUtils;
 import com.dingdang.shopcenter.common.utils.enums.ArgTypeEnum;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -24,6 +25,36 @@ public class Optionals {
     public static Object orNull(Object obj){
 
         return obj == null ? -1L : obj;
+    }
+
+    /**
+     * String为空时默认值
+     * @param obj
+     * @return
+     */
+    public static String orDefault(String obj){
+
+        return (obj == null ? "" : obj);
+    }
+
+    /**
+     * BigDecimal为空时默认值
+     * @param obj
+     * @return
+     */
+    public static BigDecimal orDefault(BigDecimal obj){
+
+        return (obj == null ? BigDecimal.ZERO : obj);
+    }
+
+    /**
+     * Integer为空时默认值
+     * @param obj
+     * @return
+     */
+    public static Integer orDefault(Integer obj){
+
+        return (obj == null ? 0 : obj);
     }
 
     /**
@@ -74,7 +105,7 @@ public class Optionals {
                 return beanObj;
             }
         } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+            throw new ServiceException(-1, "bean转换失败");
         }
         return null;
     }
