@@ -33,6 +33,11 @@ public class GlobalEnv {
     private static final String PRE_CONNECTIONURL = "jdbc:mysql://rm-bp1lsjn1hm7a6rsr85o.mysql.rds.aliyuncs.com:3306/";
 
     /**
+     * 作者
+     */
+    private static String author = "zhoutao’s template";
+
+    /**
      * 得到带-的公司
      * @return
      */
@@ -59,5 +64,9 @@ public class GlobalEnv {
 
     public static String getPreConnectionURL() {
         return PRE_CONNECTIONURL;
+    }
+
+    public static String getAuthor() {
+        return author;
     }
 }

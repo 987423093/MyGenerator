@@ -18,7 +18,6 @@ public class DBObjectCommentGenerator implements CommentGenerator {
 
     private Properties properties;
     private boolean suppressAllComments;
-    private final String author = "zhoutao's template";
 
     public DBObjectCommentGenerator() {
         super();

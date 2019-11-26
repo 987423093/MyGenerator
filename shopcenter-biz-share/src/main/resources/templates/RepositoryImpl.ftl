@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author zhoutao's template
+ * @author ${author}
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 @Repository

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.math.BigDecimal;
 
 /**
- * @author zhoutao's template
+ * @author ${author}
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 @Data

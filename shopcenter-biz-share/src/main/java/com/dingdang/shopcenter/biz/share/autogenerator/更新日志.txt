@@ -143,3 +143,4 @@ MyFreemarkerGenerator1.1 初版开发完成
 2019-11-26
 1.integration,impl,param,result生成
 2.已知bug修复
+3.author自定义

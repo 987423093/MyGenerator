@@ -8,7 +8,7 @@ import com.${company}.${argCenter}.common.facade.beans.${argObj}SearchBean;
 import java.util.List;
 
 /**
- * @author zhoutao's template
+ * @author ${author}
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 public interface ${argObj}FacadeService {

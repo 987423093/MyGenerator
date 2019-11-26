@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author zhoutao's template
+ * @author zhoutao
  * @date 2019/11/26
  */
 @Data

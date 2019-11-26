@@ -645,6 +645,7 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
             dataMap.put("likeConditions", likeConditions);
             dataMap.put("dbObjects", dbObjectGenerator.getDBObjects());
             dataMap.put("primaryObject", dbObjectGenerator.getPrimaryObject());
+            dataMap.put("author", GlobalEnv.getAuthor());
             dataMap.put("company", GlobalEnv.getCompany());
             //接口层
             dataMap.put("projectName", projectName);

@@ -8,7 +8,7 @@ import com.${company}.${argCenter}.biz.${argItem}.dataobject.${argObj};
 import java.util.List;
 
 /**
- * @author zhoutao's template
+ * @author ${author}
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 public interface ${argObj}Repository {
