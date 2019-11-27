@@ -108,6 +108,21 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
     }
 
     /**
+     * 根据条件得到${argCN}
+     * @param ${argName}SearchParam
+     * @return
+     */
+    @Override
+    public ${argObj}Result get${argObj}ByCondition(${argObj}SearchParam ${argName}SearchParam){
+
+        ${argObj}SearchBean ${argName}SearchBean = new ${argObj}SearchBean();
+        if (${argName}SearchParam != null) {
+            BeanUtils.copyProperties2(${argName}SearchBean, ${argName}SearchParam);
+        }
+        return Optionals.transformBean(${argName}FacadeService.get${argObj}ByCondition(${argName}SearchBean), ${argObj}Result.class);
+    }
+
+    /**
      * 批量添加${argCN}
      * @param ${argName}Params
      */

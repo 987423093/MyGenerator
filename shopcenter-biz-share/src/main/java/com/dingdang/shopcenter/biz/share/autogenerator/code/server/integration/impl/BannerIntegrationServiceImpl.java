@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author zhoutao’s template
+ * @author zhoutao
  * @date 2019/11/27
  */
 @Service
@@ -104,6 +104,21 @@ public class BannerIntegrationServiceImpl implements BannerIntegrationService {
            BeanUtils.copyProperties2(bannerSearchBean, bannerSearchParam);
         }
         return BeanUtils.copyList(BannerResult.class, bannerFacadeService.listBanner(bannerSearchBean));
+    }
+
+    /**
+     * 根据条件得到横幅
+     * @param bannerSearchParam
+     * @return
+     */
+    @Override
+    public BannerResult getBannerByCondition(BannerSearchParam bannerSearchParam){
+
+        BannerSearchBean bannerSearchBean = new BannerSearchBean();
+        if (bannerSearchParam != null) {
+            BeanUtils.copyProperties2(bannerSearchBean, bannerSearchParam);
+        }
+        return Optionals.transformBean(bannerFacadeService.getBannerByCondition(bannerSearchBean), BannerResult.class);
     }
 
     /**

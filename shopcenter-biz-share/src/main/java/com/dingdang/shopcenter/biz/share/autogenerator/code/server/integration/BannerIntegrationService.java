@@ -7,7 +7,7 @@ import com.dingdang.shopcenter.biz.share.autogenerator.code.server.integration.r
 import java.util.List;
 
 /**
- * @author zhoutao’s template
+ * @author zhoutao
  * @date 2019/11/27
  */
 public interface BannerIntegrationService {
@@ -53,6 +53,13 @@ public interface BannerIntegrationService {
      * @return
      */
     List<BannerResult> listBanner(BannerSearchParam bannerSearchParam);
+
+    /**
+     * 根据条件得到横幅
+     * @param bannerSearchParam
+     * @return
+     */
+    BannerResult getBannerByCondition(BannerSearchParam bannerSearchParam);
 
     /**
      * 批量添加横幅

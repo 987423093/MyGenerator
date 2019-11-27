@@ -69,4 +69,8 @@ public class GlobalEnv {
     public static String getAuthor() {
         return author;
     }
+
+    public static void setAuthor(String author) {
+        GlobalEnv.author = author;
+    }
 }

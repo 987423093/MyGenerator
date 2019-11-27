@@ -41,16 +41,6 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     private String argCN;
 
     /**
-     * 接口层名称
-     */
-    private String projectName;
-
-    /**
-     * 接口层包名称
-     */
-    private String packageName;
-
-    /**
      * 必传条件
      */
     private List<MyObject> mustConditions;
@@ -174,20 +164,6 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     }
 
     /**
-     * 设置接口层参数
-     * @param projectName
-     * @param packageName
-     * @return
-     */
-    @Override
-    public MyFreemarker initWebArgs(String projectName, String packageName){
-
-        this.projectName = projectName;
-        this.packageName = packageName;
-        return this;
-    }
-
-    /**
      * 创建全部文件
      */
     @Override
@@ -205,8 +181,10 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     @Override
     public void createCenter() {
 
-        this.createBeans();
-        this.createClazz();
+        this.createDBObject();
+        this._createFacade();
+        this._createDomain();
+        this._createRepository();
     }
 
     /**
@@ -215,33 +193,11 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     @Override
     public void createServer() {
 
+        this.createDBObject();
         this._createIntegration();
         this._createWeb();
-
     }
 
-    /**
-     * 创建integration
-     */
-    private void _createIntegration(){
-
-        this.createParam();
-        this.createSearchParam();
-        this.createResult();
-        this.createIntegration();
-        this.createIntegrationImpl();
-    }
-
-    /**
-     * 创建web
-     */
-    private void _createWeb(){
-
-        this.createRequest();
-        this.createSearchRequest();
-        this.createResponse();
-        this.createWeb();
-    }
     /**
      * 创建数据库对象
      */
@@ -254,111 +210,6 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
         this.dbObjectGenerator.process();
     }
 
-    /**
-     * 创建对象们 1.searchBean 2.bean 3.search
-     */
-    @Override
-    public void createBeans() {
-
-        this.createBean();
-        this.createSearchBean();
-        this.createSearch();
-    }
-
-    /**
-     * 创建增删改查的业务类
-     */
-    @Override
-    public void createClazz() {
-
-        this.createDomain();
-        this.createDomainImpl();
-        this.createFacade();
-        this.createFacadeImpl();
-        this.createRepository();
-        this.createRepositoryImpl();
-    }
-
-    /**
-     * 创建param
-     */
-    public void createParam(){
-
-        String filePath = myFreemarkerEnv.getParamFilePath() + "\\" + argObj + "Param.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getParamTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建paramSearch
-     */
-    public void createSearchParam(){
-
-        String filePath = myFreemarkerEnv.getSearchParamFilePath() + "\\" + argObj + "SearchParam.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getSearchParamTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建result
-     */
-    public void createResult(){
-
-        String filePath = myFreemarkerEnv.getResultFilePath() + "\\" + argObj + "Result.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getResultTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建integration
-     */
-    public void createIntegration(){
-
-        String filePath = myFreemarkerEnv.getIntegrationFilePath() + "\\" + argObj + "IntegrationService.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getIntegrationTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建integrationImpl
-     */
-    public void createIntegrationImpl(){
-
-        String filePath = myFreemarkerEnv.getIntegrationImplFilePath() + "\\" + argObj + "IntegrationServiceImpl.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getIntegrationImplTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建request
-     */
-    public void createRequest(){
-
-        String filePath = myFreemarkerEnv.getRequestFilePath() + "\\" + argObj + "Request.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getRequestTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建requestSearch
-     */
-    public void createSearchRequest(){
-
-        String filePath = myFreemarkerEnv.getSearchRequestFilePath() + "\\" + argObj + "SearchRequest.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getSearchRequestTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建response
-     */
-    public void createResponse(){
-
-        String filePath = myFreemarkerEnv.getResponseFilePath() + "\\" + argObj + "Response.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getResponseTemplatePath(), argName, argCN);
-    }
-    
-    /**
-     * 创建web
-     */
-    public void createWeb(){
-
-        String filePath = myFreemarkerEnv.getWebFilePath() + "\\" + argObj + "WebServer.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getWebTemplatePath(), argName, argCN);
-    }
 
     /**
      * 得到dubbo配置
@@ -425,96 +276,6 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
             this.likeConditions = new ArrayList<>();
         }
         this.likeConditions.add(likeCondition);
-    }
-
-    /**
-     * 创建bean
-     */
-    @Override
-    public void createBean() {
-
-        String filePath = myFreemarkerEnv.getBeanFilePath() + "\\" + argObj + "Bean.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getBeanTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建SearchBean
-     */
-    @Override
-    public void createSearchBean() {
-
-        String filePath = myFreemarkerEnv.getSearchBeanFilePath() + "\\" + argObj + "SearchBean.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getSearchBeanTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建Search
-     */
-    @Override
-    public void createSearch() {
-
-        String filePath = myFreemarkerEnv.getSearchFilePath() + "\\" + argObj + "Search.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getSearchTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建domain层
-     */
-    @Override
-    public void createDomain() {
-
-        String filePath = myFreemarkerEnv.getDomainFilePath() + "\\" + argObj + "DomainService.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getDomainTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建domainImpl层
-     */
-    @Override
-    public void createDomainImpl() {
-
-        String filePath = myFreemarkerEnv.getDomainImplFilePath() + "\\" + argObj + "DomainServiceImpl.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getDomainImplTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建repository层
-     */
-    @Override
-    public void createRepository() {
-
-        String filePath = myFreemarkerEnv.getRepositoryFilePath() + "\\" + argObj + "Repository.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getRepositoryTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建repositoryImpl层
-     */
-    @Override
-    public void createRepositoryImpl() {
-
-        String filePath = myFreemarkerEnv.getRepositoryImplFilePath() + "\\" + argObj + "RepositoryImpl.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getRepositoryImplTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建facade层
-     */
-    @Override
-    public void createFacade() {
-
-        String filePath = myFreemarkerEnv.getFacadeFilePath() + "\\" + argObj + "FacadeService.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getFacadeTemplatePath(), argName, argCN);
-    }
-
-    /**
-     * 创建facadeImpl层
-     */
-    @Override
-    public void createFacadeImpl() {
-
-        String filePath = myFreemarkerEnv.getFacadeImplFilePath() + "\\" + argObj + "FacadeServiceImpl.java";
-        beforeCreateFile(filePath, myFreemarkerEnv.getFacadeImplTemplatePath(), argName, argCN);
     }
 
     /**
@@ -703,9 +464,6 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
             dataMap.put("primaryObject", dbObjectGenerator.getPrimaryObject());
             dataMap.put("author", GlobalEnv.getAuthor());
             dataMap.put("company", GlobalEnv.getCompany());
-            //接口层
-            dataMap.put("projectName", projectName);
-            dataMap.put("packageName", packageName);
             //加载模版文件
             Template template = configuration.getTemplate(templateFilePath);
             //生成文件
@@ -940,5 +698,224 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
             sb.append(tableName.charAt(i));
         }
         return sb.toString();
+    }
+
+
+    //----------------------集合方法
+
+    /**
+     * 创建integration
+     */
+    private void _createIntegration(){
+
+        this.createParam();
+        this.createSearchParam();
+        this.createResult();
+        this.createIntegration();
+        this.createIntegrationImpl();
+    }
+
+    /**
+     * 创建web
+     */
+    private void _createWeb(){
+
+        this.createRequest();
+        this.createSearchRequest();
+        this.createResponse();
+        this.createWebServer();
+    }
+
+    /**
+     * 创建facade
+     */
+    private void _createFacade(){
+
+        this.createSearchBean();
+        this.createBean();
+        this.createFacade();
+        this.createFacadeImpl();
+    }
+
+    /**
+     * 创建domain
+     */
+    private void _createDomain(){
+
+        this.createDomain();
+        this.createDomainImpl();
+    }
+
+    /**
+     * 创建repository
+     */
+    private void _createRepository(){
+
+        this.createSearch();
+        this.createRepository();
+        this.createRepositoryImpl();
+    }
+
+    //----------------------单方法
+    /**
+     * 创建param
+     */
+    private void createParam(){
+
+        String filePath = myFreemarkerEnv.getParamFilePath() + "\\" + argObj + "Param.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getParamTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建paramSearch
+     */
+    private void createSearchParam(){
+
+        String filePath = myFreemarkerEnv.getSearchParamFilePath() + "\\" + argObj + "SearchParam.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getSearchParamTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建result
+     */
+    private void createResult(){
+
+        String filePath = myFreemarkerEnv.getResultFilePath() + "\\" + argObj + "Result.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getResultTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建integration
+     */
+    private void createIntegration(){
+
+        String filePath = myFreemarkerEnv.getIntegrationFilePath() + "\\" + argObj + "IntegrationService.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getIntegrationTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建integrationImpl
+     */
+    private void createIntegrationImpl(){
+
+        String filePath = myFreemarkerEnv.getIntegrationImplFilePath() + "\\" + argObj + "IntegrationServiceImpl.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getIntegrationImplTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建request
+     */
+    private void createRequest(){
+
+        String filePath = myFreemarkerEnv.getRequestFilePath() + "\\" + argObj + "Request.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getRequestTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建requestSearch
+     */
+    private void createSearchRequest(){
+
+        String filePath = myFreemarkerEnv.getSearchRequestFilePath() + "\\" + argObj + "SearchRequest.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getSearchRequestTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建response
+     */
+    private void createResponse(){
+
+        String filePath = myFreemarkerEnv.getResponseFilePath() + "\\" + argObj + "Response.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getResponseTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建webServer
+     */
+    private void createWebServer(){
+
+        String filePath = myFreemarkerEnv.getWebFilePath() + "\\" + argObj + "WebServer.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getWebTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建bean
+     */
+    private void createBean() {
+
+        String filePath = myFreemarkerEnv.getBeanFilePath() + "\\" + argObj + "Bean.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getBeanTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建SearchBean
+     */
+    private void createSearchBean() {
+
+        String filePath = myFreemarkerEnv.getSearchBeanFilePath() + "\\" + argObj + "SearchBean.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getSearchBeanTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建Search
+     */
+    private void createSearch() {
+
+        String filePath = myFreemarkerEnv.getSearchFilePath() + "\\" + argObj + "Search.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getSearchTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建domain层
+     */
+    private void createDomain() {
+
+        String filePath = myFreemarkerEnv.getDomainFilePath() + "\\" + argObj + "DomainService.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getDomainTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建domainImpl层
+     */
+    private void createDomainImpl() {
+
+        String filePath = myFreemarkerEnv.getDomainImplFilePath() + "\\" + argObj + "DomainServiceImpl.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getDomainImplTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建repository层
+     */
+    private void createRepository() {
+
+        String filePath = myFreemarkerEnv.getRepositoryFilePath() + "\\" + argObj + "Repository.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getRepositoryTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建repositoryImpl层
+     */
+    private void createRepositoryImpl() {
+
+        String filePath = myFreemarkerEnv.getRepositoryImplFilePath() + "\\" + argObj + "RepositoryImpl.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getRepositoryImplTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建facade层
+     */
+    private void createFacade() {
+
+        String filePath = myFreemarkerEnv.getFacadeFilePath() + "\\" + argObj + "FacadeService.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getFacadeTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建facadeImpl层
+     */
+    private void createFacadeImpl() {
+
+        String filePath = myFreemarkerEnv.getFacadeImplFilePath() + "\\" + argObj + "FacadeServiceImpl.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getFacadeImplTemplatePath(), argName, argCN);
     }
 }

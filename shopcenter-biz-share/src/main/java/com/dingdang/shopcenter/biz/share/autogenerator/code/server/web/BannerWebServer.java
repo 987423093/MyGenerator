@@ -4,6 +4,7 @@ import com.dingdang.commons.annotations.Param;
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.commons.utils.BeanUtils;
+import com.dingdang.commons.utils.StringUtils;
 import com.dingdang.shopcenter.biz.share.autogenerator.code.server.integration.BannerIntegrationService;
 import com.dingdang.shopcenter.biz.share.autogenerator.code.server.integration.param.BannerParam;
 import com.dingdang.shopcenter.biz.share.autogenerator.code.server.integration.param.BannerSearchParam;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author zhoutao’s template
+ * @author zhoutao
  * @date 2019/11/27
  */
 @Service("banner")

@@ -17,14 +17,6 @@ public interface IAutoMethodGenerator {
     IAutoMethodGenerator initTableObject(String tableName, String argCN);
 
     /**
-     * 初始化接口层
-     * @param projectName
-     * @param packageName
-     * @return
-     */
-    IAutoMethodGenerator initWebArgs(String projectName, String packageName);
-
-    /**
      * 添加模糊条件
      * @param myObject 模糊条件
      */
@@ -54,56 +46,6 @@ public interface IAutoMethodGenerator {
     void initConditions();
 
     /**
-     * 创建bean
-     */
-    void createBean();
-
-    /**
-     * 创建search
-     */
-    void createSearch();
-
-    /**
-     * 创建searchBean
-     */
-    void createSearchBean();
-
-    /**
-     * 创建beans
-     */
-    void createBeans();
-
-    /**
-     * 创建repository层
-     */
-    void createRepository();
-
-    /**
-     * 创建repositoryImpl层
-     */
-    void createRepositoryImpl();
-
-    /**
-     * 创建domain层
-     */
-    void createDomain();
-
-    /**
-     * 创建domainImpl层
-     */
-    void createDomainImpl();
-
-    /**
-     * 创建facade层
-     */
-    void createFacade();
-
-    /**
-     * 创建facadeImpl层
-     */
-    void createFacadeImpl();
-
-    /**
      * 创建全部文件
      */
     void createAll();
@@ -122,11 +64,6 @@ public interface IAutoMethodGenerator {
      * 创建数据库对象
      */
     void createDBObject();
-
-    /**
-     * 创建增删改查的业务类
-     */
-    void createClazz();
 
     /**
      * 得到dubbo配置

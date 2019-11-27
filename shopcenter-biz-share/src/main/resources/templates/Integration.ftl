@@ -56,6 +56,13 @@ public interface ${argObj}IntegrationService {
     List<${argObj}Result> list${argObj}(${argObj}SearchParam ${argName}SearchParam);
 
     /**
+     * 根据条件得到${argCN}
+     * @param ${argName}SearchParam
+     * @return
+     */
+    ${argObj}Result get${argObj}ByCondition(${argObj}SearchParam ${argName}SearchParam);
+
+    /**
      * 批量添加${argCN}
      * @param ${argName}Params
      */

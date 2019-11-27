@@ -146,7 +146,7 @@ public class ${argObj}RepositoryImpl implements ${argObj}Repository {
         for (${argObj} ${argName} : ${argName}s){
         <#if mustConditions ??>
             <#list mustConditions as mustCondition>
-            Assert.notNull(${argName}.get${mustCondition.ename?cap_first}(), "${mustCondition.ename} must not be null !");
+            Assert.notNull(${argName}.get${mustCondition.ename?cap_first}(), "batch ${mustCondition.ename} must not be null !");
             </#list>
         </#if>
             Optionals.setDefaultInsert(${argName});

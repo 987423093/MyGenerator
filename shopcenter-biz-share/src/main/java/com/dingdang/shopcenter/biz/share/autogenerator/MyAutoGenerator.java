@@ -1,6 +1,7 @@
 package com.dingdang.shopcenter.biz.share.autogenerator;
 
 import com.dingdang.shopcenter.biz.share.autogenerator.auto.*;
+import com.dingdang.shopcenter.biz.share.autogenerator.utils.GlobalEnv;
 
 /**
  * @author zhoutao
@@ -36,6 +37,7 @@ public class MyAutoGenerator {
      */
     public static void main(String[] args) {
 
+        GlobalEnv.setAuthor("zhoutao");
         //祖先生成器
         IAutoGenerator autoGenerator = new AutoGenerator(new AutoEnvFactory().getDefaultEnv());
         //方法生成器

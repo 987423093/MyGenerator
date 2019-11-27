@@ -45,10 +45,17 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         }
         <#if mustConditions ??>
              <#list mustConditions as mustCondition>
+                 <#if mustCondition.type == "String">
+        if (StringUtils.isBlank(${argName}Bean.get${mustCondition.ename?cap_first}())){
+            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be empty !");
+            throw new ServiceException(-1, "${mustCondition.sname} 不能为空字符串");
+        }
+                 <#else>
         if (${argName}Bean.get${mustCondition.ename?cap_first}() == null){
-            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be null or empty!");
+            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be null !");
             throw new ServiceException(-1, "${mustCondition.sname} 不能为空");
         }
+                 </#if>
              </#list>
         </#if>
         ${argObj} ${argName} = new ${argObj}();
@@ -170,7 +177,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         for (${argObj}Bean ${argName}Bean : ${argName}Beans){
                 <#list mustConditions as mustCondition>
             if (${argName}Bean.get${mustCondition.ename?cap_first}() == null){
-            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be null or empty!");
+            logger.error("Fail to batAdd${argObj} ! batch ${mustCondition.ename} must not be null or empty!");
                 throw new ServiceException(-1, "${mustCondition.sname} 不能为空");
             }
                 </#list>

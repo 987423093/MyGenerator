@@ -5,6 +5,7 @@ import com.${company}.commons.annotations.Param;
 import com.${company}.commons.basic.PagerListBean;
 import com.${company}.commons.exceptions.ServiceException;
 import com.${company}.commons.utils.BeanUtils;
+import com.${company}.commons.utils.StringUtils;
 import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.${argObj}IntegrationService;
 import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param.${argObj}Param;
 import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param.${argObj}SearchParam;
@@ -45,10 +46,17 @@ public class ${argObj}WebServer {
         }
         <#if mustConditions ??>
             <#list mustConditions as mustCondition>
+                <#if mustCondition.type == "String">
+        if (StringUtils.isBlank(${argName}Request.get${mustCondition.ename?cap_first}())){
+            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be empty !");
+            throw new ServiceException(-1, "${mustCondition.sname} 不能为空字符串");
+        }
+                <#else>
         if (${argName}Request.get${mustCondition.ename?cap_first}() == null){
-            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be null or empty!");
+            logger.error("Fail to add${argObj} ! ${mustCondition.ename} must not be null !");
             throw new ServiceException(-1, "${mustCondition.sname} 不能为空");
         }
+                </#if>
             </#list>
         </#if>
         ${argObj}Param ${argName}Param = new ${argObj}Param();
