@@ -1,12 +1,12 @@
 <#assign argObj = "${argName}"?cap_first>
-package com.${company}.${argCenter}.biz.share.autogenerator.code.server.impl;
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.impl;
 
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.utils.BeanUtils;
 import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.${argObj}IntegrationService;
-import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}Param;
-import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}SearchParam;
-import com.${company}.${argCenter}.biz.share.autogenerator.code.server.result.${argObj}Result;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param.${argObj}Param;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param.${argObj}SearchParam;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.result.${argObj}Result;
 import com.${company}.${argCenter}.common.facade.beans.${argObj}Bean;
 import com.${company}.${argCenter}.common.facade.beans.${argObj}SearchBean;
 import com.${company}.${argCenter}.common.facade.interfaces.${argObj}FacadeService;
@@ -29,25 +29,27 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
     /**
      * 新增${argCN}
      * @param ${argName}Param
+     * @return
      */
     @Override
     public ${argObj}Result add${argObj}(${argObj}Param ${argName}Param) {
 
         ${argObj}Bean ${argName}Bean = new ${argObj}Bean();
         BeanUtils.copyProperties2(${argName}Bean, ${argName}Param);
-        return (${argObj}Result) Optionals.transformBean(${argName}FacadeService.add${argObj}(${argName}Bean), ${argObj}Result.class);
+        return Optionals.transformBean(${argName}FacadeService.add${argObj}(${argName}Bean), ${argObj}Result.class);
     }
 
     /**
      * 修改${argCN}
      * @param ${argName}Param
+     * @return
      */
     @Override
     public ${argObj}Result modify${argObj}(${argObj}Param ${argName}Param) {
 
         ${argObj}Bean ${argName}Bean = new ${argObj}Bean();
         BeanUtils.copyProperties2(${argName}Bean, ${argName}Param);
-        return (${argObj}Result) Optionals.transformBean(${argName}FacadeService.modify${argObj}(${argName}Bean), ${argObj}Result.class);
+        return Optionals.transformBean(${argName}FacadeService.modify${argObj}(${argName}Bean), ${argObj}Result.class);
     }
 
     /**
@@ -68,7 +70,7 @@ public class ${argObj}IntegrationServiceImpl implements ${argObj}IntegrationServ
     @Override
     public ${argObj}Result get${argObj}Detail(Long ${primaryObject.ename}) {
 
-        return (${argObj}Result) Optionals.transformBean(${argName}FacadeService.get${argObj}Detail(${primaryObject.ename}), ${argObj}Result.class);
+        return Optionals.transformBean(${argName}FacadeService.get${argObj}Detail(${primaryObject.ename}), ${argObj}Result.class);
     }
 
     /**

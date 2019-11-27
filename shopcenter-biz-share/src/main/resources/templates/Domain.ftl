@@ -16,12 +16,14 @@ public interface ${argObj}DomainService {
     /**
      * 增加${argCN}
      * @param ${argName}
+     * @return
      */
     ${argObj} add${argObj}(${argObj} ${argName});
 
     /**
      * 修改${argCN}
      * @param ${argName}
+     * @return
      */
     ${argObj} modify${argObj}(${argObj} ${argName});
 
@@ -34,12 +36,14 @@ public interface ${argObj}DomainService {
     /**
      * 得到${argCN}详情
      * @param ${primaryObject.ename}
+     * @return
      */
     ${argObj} get${argObj}Detail(Long ${primaryObject.ename});
 
     /**
      * 列出${argCN}
      * @param ${argName}Search
+     * @return
      */
     List<${argObj}> list${argObj}(${argObj}Search ${argName}Search);
 
@@ -47,12 +51,14 @@ public interface ${argObj}DomainService {
      * 分页列出${argCN}
      * @param ${argName}Search
      * @param pagerListBean
+     * @return
      */
     PagerListBean<${argObj}> list${argObj}ByPage(${argObj}Search ${argName}Search, PagerListBean pagerListBean);
 
     /**
      * 根据条件得到${argCN}
      * @param ${argName}Search
+     * @return
      */
     ${argObj} get${argObj}ByCondition(${argObj}Search ${argName}Search);
 

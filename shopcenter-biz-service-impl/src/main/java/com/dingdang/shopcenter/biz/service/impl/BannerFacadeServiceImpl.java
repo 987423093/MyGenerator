@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/11/26
+ * @author zhoutao’s template
+ * @date 2019/11/27
  */
 @Service
 public class BannerFacadeServiceImpl implements BannerFacadeService {
@@ -33,6 +33,7 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
     /**
      * 增加横幅
      * @param bannerBean
+     * @return
      */
     @Override
     public BannerBean addBanner(BannerBean bannerBean){
@@ -43,12 +44,13 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         }
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
-        return (BannerBean) Optionals.transformBean(bannerDomainService.addBanner(banner), BannerBean.class);
+        return Optionals.transformBean(bannerDomainService.addBanner(banner), BannerBean.class);
     }
 
     /**
      * 修改横幅
      * @param bannerBean
+     * @return
      */
     @Override
     public BannerBean modifyBanner(BannerBean bannerBean){
@@ -63,13 +65,13 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         }
         Banner banner = new Banner();
         BeanUtils.copyProperties2(banner, bannerBean);
-        return (BannerBean) Optionals.transformBean(bannerDomainService.modifyBanner(banner), BannerBean.class);
+        return Optionals.transformBean(bannerDomainService.modifyBanner(banner), BannerBean.class);
     }
 
     /**
-    * 移除横幅
-    * @param bannerId
-    */
+     * 移除横幅
+     * @param bannerId
+     */
     @Override
     public void removeBanner(Long bannerId){
 
@@ -83,6 +85,7 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
     /**
      * 得到横幅详情
      * @param bannerId
+     * @return
      */
     @Override
     public BannerBean getBannerDetail(Long bannerId){
@@ -91,12 +94,13 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
             logger.error("Fail to getBannerDetail ! bannerId must not be null !");
             throw new ServiceException(-1, "bannerId 不能为空");
         }
-        return (BannerBean) Optionals.transformBean(bannerDomainService.getBannerDetail(bannerId), BannerBean.class);
+        return Optionals.transformBean(bannerDomainService.getBannerDetail(bannerId), BannerBean.class);
     }
 
     /**
      * 列出横幅
      * @param bannerSearchBean
+     * @return
      */
     @Override
     public List<BannerBean> listBanner(BannerSearchBean bannerSearchBean){
@@ -112,6 +116,7 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
      * 分页列出横幅
      * @param bannerSearchBean
      * @param pagerListBean
+     * @return
      */
     @Override
     public PagerListBean<BannerBean> listBannerByPage(BannerSearchBean bannerSearchBean, PagerListBean pagerListBean){
@@ -129,6 +134,7 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
     /**
      * 根据条件得到横幅
      * @param bannerSearchBean
+     * @return
      */
     @Override
     public BannerBean getBannerByCondition(BannerSearchBean bannerSearchBean){
@@ -137,7 +143,7 @@ public class BannerFacadeServiceImpl implements BannerFacadeService {
         if (bannerSearchBean != null) {
             BeanUtils.copyProperties2(bannerSearch, bannerSearchBean);
         }
-        return (BannerBean) Optionals.transformBean(bannerDomainService.getBannerByCondition(bannerSearch), BannerBean.class);
+        return Optionals.transformBean(bannerDomainService.getBannerByCondition(bannerSearch), BannerBean.class);
     }
 
     /**

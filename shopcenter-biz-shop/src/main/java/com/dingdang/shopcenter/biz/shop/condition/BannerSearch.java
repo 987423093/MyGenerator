@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/11/26
+ * @author zhoutao’s template
+ * @date 2019/11/27
  */
 @Data
 public class BannerSearch {

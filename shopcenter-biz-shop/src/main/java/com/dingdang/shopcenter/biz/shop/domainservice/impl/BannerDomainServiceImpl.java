@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/11/26
+ * @author zhoutao’s template
+ * @date 2019/11/27
  */
 @Service
 public class BannerDomainServiceImpl implements BannerDomainService {
@@ -23,6 +23,7 @@ public class BannerDomainServiceImpl implements BannerDomainService {
     /**
      * 增加横幅
      * @param banner
+     * @return
      */
     @Override
     public Banner addBanner(Banner banner){
@@ -33,6 +34,7 @@ public class BannerDomainServiceImpl implements BannerDomainService {
     /**
      * 修改横幅
      * @param banner
+     * @return
      */
     @Override
     public Banner modifyBanner(Banner banner){
@@ -53,6 +55,7 @@ public class BannerDomainServiceImpl implements BannerDomainService {
     /**
      * 得到横幅详情
      * @param bannerId
+     * @return
      */
     @Override
     public Banner getBannerDetail(Long bannerId){
@@ -63,6 +66,7 @@ public class BannerDomainServiceImpl implements BannerDomainService {
     /**
      * 列出横幅
      * @param bannerSearch
+     * @return
      */
     @Override
     public List<Banner> listBanner(BannerSearch bannerSearch){
@@ -74,6 +78,7 @@ public class BannerDomainServiceImpl implements BannerDomainService {
      * 分页列出横幅
      * @param bannerSearch
      * @param pagerListBean
+     * @return
      */
     @Override
     public PagerListBean<Banner> listBannerByPage(BannerSearch bannerSearch, PagerListBean pagerListBean){
@@ -84,6 +89,7 @@ public class BannerDomainServiceImpl implements BannerDomainService {
     /**
      * 根据条件得到横幅
      * @param bannerSearch
+     * @return
      */
     @Override
     public Banner getBannerByCondition(BannerSearch bannerSearch){

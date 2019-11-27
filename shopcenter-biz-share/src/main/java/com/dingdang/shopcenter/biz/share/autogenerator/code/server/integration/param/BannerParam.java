@@ -1,8 +1,7 @@
-package com.dingdang.shopcenter.common.facade.beans;
+package com.dingdang.shopcenter.biz.share.autogenerator.code.server.integration.param;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.math.BigDecimal;
 
@@ -11,7 +10,7 @@ import java.math.BigDecimal;
  * @date 2019/11/27
  */
 @Data
-public class BannerBean implements Serializable {
+public class BannerParam {
 
     /**
      * banner主键

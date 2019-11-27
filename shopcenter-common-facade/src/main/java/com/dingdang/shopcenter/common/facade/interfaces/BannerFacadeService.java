@@ -7,20 +7,22 @@ import com.dingdang.shopcenter.common.facade.beans.BannerSearchBean;
 import java.util.List;
 
 /**
- * @author zhoutao
- * @date 2019/11/26
+ * @author zhoutao’s template
+ * @date 2019/11/27
  */
 public interface BannerFacadeService {
 
     /**
      * 增加横幅
      * @param bannerBean
+     * @return
      */
     BannerBean addBanner(BannerBean bannerBean);
 
     /**
      * 修改横幅
      * @param bannerBean
+     * @return
      */
     BannerBean modifyBanner(BannerBean bannerBean);
 
@@ -33,12 +35,14 @@ public interface BannerFacadeService {
     /**
      * 得到横幅详情
      * @param bannerId
+     * @return
      */
     BannerBean getBannerDetail(Long bannerId);
 
     /**
      * 列出横幅
      * @param bannerSearchBean
+     * @return
      */
     List<BannerBean> listBanner(BannerSearchBean bannerSearchBean);
 
@@ -46,12 +50,14 @@ public interface BannerFacadeService {
      * 分页列出横幅
      * @param bannerSearchBean
      * @param pagerListBean
+     * @return
      */
     PagerListBean<BannerBean> listBannerByPage(BannerSearchBean bannerSearchBean, PagerListBean pagerListBean);
 
     /**
      * 根据条件得到横幅
      * @param bannerSearchBean
+     * @return
      */
     BannerBean getBannerByCondition(BannerSearchBean bannerSearchBean);
 

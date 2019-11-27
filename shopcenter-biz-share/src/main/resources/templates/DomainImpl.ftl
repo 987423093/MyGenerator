@@ -24,6 +24,7 @@ public class ${argObj}DomainServiceImpl implements ${argObj}DomainService {
     /**
      * 增加${argCN}
      * @param ${argName}
+     * @return
      */
     @Override
     public ${argObj} add${argObj}(${argObj} ${argName}){
@@ -34,6 +35,7 @@ public class ${argObj}DomainServiceImpl implements ${argObj}DomainService {
     /**
      * 修改${argCN}
      * @param ${argName}
+     * @return
      */
     @Override
     public ${argObj} modify${argObj}(${argObj} ${argName}){
@@ -54,6 +56,7 @@ public class ${argObj}DomainServiceImpl implements ${argObj}DomainService {
     /**
      * 得到${argCN}详情
      * @param ${primaryObject.ename}
+     * @return
      */
     @Override
     public ${argObj} get${argObj}Detail(Long ${primaryObject.ename}){
@@ -64,6 +67,7 @@ public class ${argObj}DomainServiceImpl implements ${argObj}DomainService {
     /**
      * 列出${argCN}
      * @param ${argName}Search
+     * @return
      */
     @Override
     public List<${argObj}> list${argObj}(${argObj}Search ${argName}Search){
@@ -75,6 +79,7 @@ public class ${argObj}DomainServiceImpl implements ${argObj}DomainService {
      * 分页列出${argCN}
      * @param ${argName}Search
      * @param pagerListBean
+     * @return
      */
     @Override
     public PagerListBean<${argObj}> list${argObj}ByPage(${argObj}Search ${argName}Search, PagerListBean pagerListBean){
@@ -85,6 +90,7 @@ public class ${argObj}DomainServiceImpl implements ${argObj}DomainService {
     /**
      * 根据条件得到${argCN}
      * @param ${argName}Search
+     * @return
      */
     @Override
     public ${argObj} get${argObj}ByCondition(${argObj}Search ${argName}Search){

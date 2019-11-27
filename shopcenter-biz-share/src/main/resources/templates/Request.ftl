@@ -1,6 +1,7 @@
 <#assign argObj = "${argName}"?cap_first>
-package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.result;
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.web.request;
 
+import com.${company}.commons.web.server.bean.RequestJsonBody;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 @Data
-public class ${argObj}Result {
+public class ${argObj}Request extends RequestJsonBody {
     <#if dbObjects ??>
         <#list dbObjects as dbObject>
 

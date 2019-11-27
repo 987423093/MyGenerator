@@ -5,6 +5,7 @@ import com.dingdang.commons.enums.StateEnum;
 import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.commons.utils.BeanUtils;
 import com.dingdang.shopcenter.common.utils.enums.ArgTypeEnum;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -96,13 +97,13 @@ public class Optionals {
      * @param clazz
      * @return
      */
-    public static Object transformBean(Object obj, Class clazz){
+    public static <T> T transformBean(Object obj, Class clazz){
 
         try {
             Object beanObj = clazz.newInstance();
             if (obj != null) {
                 BeanUtils.copyProperties2(beanObj, obj);
-                return beanObj;
+                return (T) beanObj;
             }
         } catch (InstantiationException | IllegalAccessException e) {
             throw new ServiceException(-1, "bean转换失败");

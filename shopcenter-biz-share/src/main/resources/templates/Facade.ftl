@@ -16,12 +16,14 @@ public interface ${argObj}FacadeService {
     /**
      * 增加${argCN}
      * @param ${argName}Bean
+     * @return
      */
     ${argObj}Bean add${argObj}(${argObj}Bean ${argName}Bean);
 
     /**
      * 修改${argCN}
      * @param ${argName}Bean
+     * @return
      */
     ${argObj}Bean modify${argObj}(${argObj}Bean ${argName}Bean);
 
@@ -34,12 +36,14 @@ public interface ${argObj}FacadeService {
     /**
      * 得到${argCN}详情
      * @param ${primaryObject.ename}
+     * @return
      */
     ${argObj}Bean get${argObj}Detail(Long ${primaryObject.ename});
 
     /**
      * 列出${argCN}
      * @param ${argName}SearchBean
+     * @return
      */
     List<${argObj}Bean> list${argObj}(${argObj}SearchBean ${argName}SearchBean);
 
@@ -47,12 +51,14 @@ public interface ${argObj}FacadeService {
      * 分页列出${argCN}
      * @param ${argName}SearchBean
      * @param pagerListBean
+     * @return
      */
     PagerListBean<${argObj}Bean> list${argObj}ByPage(${argObj}SearchBean ${argName}SearchBean, PagerListBean pagerListBean);
 
     /**
      * 根据条件得到${argCN}
      * @param ${argName}SearchBean
+     * @return
      */
     ${argObj}Bean get${argObj}ByCondition(${argObj}SearchBean ${argName}SearchBean);
 

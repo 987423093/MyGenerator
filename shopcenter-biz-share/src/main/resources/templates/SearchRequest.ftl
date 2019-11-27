@@ -1,7 +1,8 @@
 <#assign argObj = "${argName}"?cap_first>
-package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param;
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.web.request;
 
 import lombok.Data;
+import com.dingdang.commons.web.server.bean.RequestJsonBody;
 
 import java.util.Date;
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 @Data
-public class ${argObj}SearchParam {
+public class ${argObj}SearchRequest extends RequestJsonBody {
     <#if searchConditions ??>
         <#list searchConditions as searchCondition>
 

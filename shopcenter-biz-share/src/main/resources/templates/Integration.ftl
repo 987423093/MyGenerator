@@ -2,9 +2,9 @@
 package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration;
 
 import com.${company}.commons.basic.PagerListBean;
-import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}SearchParam;
-import com.${company}.${argCenter}.biz.share.autogenerator.code.server.param.${argObj}Param;
-import com.${company}.${argCenter}.biz.share.autogenerator.code.server.result.${argObj}Result;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param.${argObj}SearchParam;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param.${argObj}Param;
+import com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.result.${argObj}Result;
 import java.util.List;
 
 /**
@@ -16,12 +16,14 @@ public interface ${argObj}IntegrationService {
     /**
      * 新增${argCN}
      * @param ${argName}Param
+     * @return
      */
     ${argObj}Result add${argObj}(${argObj}Param ${argName}Param);
     
     /**
      * 修改${argCN}
      * @param ${argName}Param
+     * @return
      */
     ${argObj}Result modify${argObj}(${argObj}Param ${argName}Param);
     

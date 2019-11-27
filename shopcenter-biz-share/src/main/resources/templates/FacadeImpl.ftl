@@ -34,6 +34,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
     /**
      * 增加${argCN}
      * @param ${argName}Bean
+     * @return
      */
     @Override
     public ${argObj}Bean add${argObj}(${argObj}Bean ${argName}Bean){
@@ -52,12 +53,13 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         </#if>
         ${argObj} ${argName} = new ${argObj}();
         BeanUtils.copyProperties2(${argName}, ${argName}Bean);
-        return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.add${argObj}(${argName}), ${argObj}Bean.class);
+        return Optionals.transformBean(${argName}DomainService.add${argObj}(${argName}), ${argObj}Bean.class);
     }
 
     /**
      * 修改${argCN}
      * @param ${argName}Bean
+     * @return
      */
     @Override
     public ${argObj}Bean modify${argObj}(${argObj}Bean ${argName}Bean){
@@ -72,13 +74,13 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         }
         ${argObj} ${argName} = new ${argObj}();
         BeanUtils.copyProperties2(${argName}, ${argName}Bean);
-        return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.modify${argObj}(${argName}), ${argObj}Bean.class);
+        return Optionals.transformBean(${argName}DomainService.modify${argObj}(${argName}), ${argObj}Bean.class);
     }
 
     /**
-    * 移除${argCN}
-    * @param ${primaryObject.ename}
-    */
+     * 移除${argCN}
+     * @param ${primaryObject.ename}
+     */
     @Override
     public void remove${argObj}(Long ${primaryObject.ename}){
 
@@ -92,6 +94,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
     /**
      * 得到${argCN}详情
      * @param ${primaryObject.ename}
+     * @return
      */
     @Override
     public ${argObj}Bean get${argObj}Detail(Long ${primaryObject.ename}){
@@ -100,12 +103,13 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
             logger.error("Fail to get${argObj}Detail ! ${primaryObject.ename} must not be null !");
             throw new ServiceException(-1, "${primaryObject.ename} 不能为空");
         }
-        return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.get${argObj}Detail(${primaryObject.ename}), ${argObj}Bean.class);
+        return Optionals.transformBean(${argName}DomainService.get${argObj}Detail(${primaryObject.ename}), ${argObj}Bean.class);
     }
 
     /**
      * 列出${argCN}
      * @param ${argName}SearchBean
+     * @return
      */
     @Override
     public List<${argObj}Bean> list${argObj}(${argObj}SearchBean ${argName}SearchBean){
@@ -121,6 +125,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
      * 分页列出${argCN}
      * @param ${argName}SearchBean
      * @param pagerListBean
+     * @return
      */
     @Override
     public PagerListBean<${argObj}Bean> list${argObj}ByPage(${argObj}SearchBean ${argName}SearchBean, PagerListBean pagerListBean){
@@ -138,6 +143,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
     /**
      * 根据条件得到${argCN}
      * @param ${argName}SearchBean
+     * @return
      */
     @Override
     public ${argObj}Bean get${argObj}ByCondition(${argObj}SearchBean ${argName}SearchBean){
@@ -146,7 +152,7 @@ public class ${argObj}FacadeServiceImpl implements ${argObj}FacadeService {
         if (${argName}SearchBean != null) {
             BeanUtils.copyProperties2(${argName}Search, ${argName}SearchBean);
         }
-        return (${argObj}Bean) Optionals.transformBean(${argName}DomainService.get${argObj}ByCondition(${argName}Search), ${argObj}Bean.class);
+        return Optionals.transformBean(${argName}DomainService.get${argObj}ByCondition(${argName}Search), ${argObj}Bean.class);
     }
 
     /**

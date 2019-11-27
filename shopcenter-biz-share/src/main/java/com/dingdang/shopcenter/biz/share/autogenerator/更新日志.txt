@@ -34,6 +34,7 @@
     5.项目自定义参数优化 ✔
     6.回滚扩展深度开发（包括清理垃圾文件，各种快捷键和片化内容存储如git）
     7.去除与Optionals，StringUtils,CollectionUtils的耦合，将工具类写入到自身内部
+    8.根据数据库字段类型对于import实现所有使用的导入
 ------------------------------------------------------
 建议:
 
@@ -144,3 +145,9 @@ MyFreemarkerGenerator1.1 初版开发完成
 1.integration,impl,param,result生成
 2.已知bug修复
 3.author自定义
+
+-version-3.3
+2019-11-27
+1.web,request,response,searchRequest生成
+2.@result注解添加
+3.transformBean支持泛型

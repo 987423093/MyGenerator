@@ -188,6 +188,46 @@ public class MyFreemarkerEnv implements IAutoEnv {
      * integrationImpl引用的模板
      */
     private String integrationImplTemplatePath;
+
+    /**
+     * request代码生成的路径
+     */
+    private String requestFilePath;
+
+    /**
+     * request引用的模板
+     */
+    private String requestTemplatePath;
+
+    /**
+     * searchRequest代码生成的路径
+     */
+    private String searchRequestFilePath;
+
+    /**
+     * searchRequest引用的模板
+     */
+    private String searchRequestTemplatePath;
+    
+    /**
+     * response代码生成的路径
+     */
+    private String responseFilePath;
+
+    /**
+     * response引用的模板
+     */
+    private String responseTemplatePath;
+
+    /**
+     * web代码生成的路径
+     */
+    private String webFilePath;
+
+    /**
+     * web引用的模板
+     */
+    private String webTemplatePath;
     
     /**
      * 条件对象代码生成路径
@@ -269,16 +309,28 @@ public class MyFreemarkerEnv implements IAutoEnv {
         this.searchTemplatePath = "/Search.ftl";
 
         //接口层模板路径
-        this.paramFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\param";
+        
+        //integration层
+        this.paramFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration\\param";
         this.paramTemplatePath = "/Param.ftl";
-        this.searchParamFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\param";
+        this.searchParamFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration\\param";
         this.searchParamTemplatePath = "/SearchParam.ftl";
-        this.resultFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\result";
+        this.resultFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration\\result";
         this.resultTemplatePath = "/Result.ftl";
         this.integrationFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration";
         this.integrationTemplatePath = "/Integration.ftl";
-        this.integrationImplFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\impl";
+        this.integrationImplFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration\\impl";
         this.integrationImplTemplatePath = "/IntegrationImpl.ftl";
+        
+        //web层
+        this.requestFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\web\\request";
+        this.requestTemplatePath = "/Request.ftl";
+        this.searchRequestFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\web\\request";
+        this.searchRequestTemplatePath = "/SearchRequest.ftl";
+        this.responseFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\web\\response";
+        this.responseTemplatePath = "/Response.ftl";
+        this.webFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\web";
+        this.webTemplatePath = "/Web.ftl";
     }
 
     public String getItemCenter() {
@@ -431,5 +483,37 @@ public class MyFreemarkerEnv implements IAutoEnv {
 
     public String getIntegrationImplTemplatePath() {
         return integrationImplTemplatePath;
+    }
+
+    public String getRequestFilePath() {
+        return requestFilePath;
+    }
+
+    public String getRequestTemplatePath() {
+        return requestTemplatePath;
+    }
+
+    public String getSearchRequestFilePath() {
+        return searchRequestFilePath;
+    }
+
+    public String getSearchRequestTemplatePath() {
+        return searchRequestTemplatePath;
+    }
+
+    public String getResponseFilePath() {
+        return responseFilePath;
+    }
+
+    public String getResponseTemplatePath() {
+        return responseTemplatePath;
+    }
+
+    public String getWebFilePath() {
+        return webFilePath;
+    }
+
+    public String getWebTemplatePath() {
+        return webTemplatePath;
     }
 }

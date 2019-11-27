@@ -215,13 +215,33 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     @Override
     public void createServer() {
 
+        this._createIntegration();
+        this._createWeb();
+
+    }
+
+    /**
+     * 创建integration
+     */
+    private void _createIntegration(){
+
         this.createParam();
-        this.createParamSearch();
+        this.createSearchParam();
         this.createResult();
         this.createIntegration();
         this.createIntegrationImpl();
     }
 
+    /**
+     * 创建web
+     */
+    private void _createWeb(){
+
+        this.createRequest();
+        this.createSearchRequest();
+        this.createResponse();
+        this.createWeb();
+    }
     /**
      * 创建数据库对象
      */
@@ -271,7 +291,7 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     /**
      * 创建paramSearch
      */
-    public void createParamSearch(){
+    public void createSearchParam(){
 
         String filePath = myFreemarkerEnv.getSearchParamFilePath() + "\\" + argObj + "SearchParam.java";
         beforeCreateFile(filePath, myFreemarkerEnv.getSearchParamTemplatePath(), argName, argCN);
@@ -302,6 +322,42 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
 
         String filePath = myFreemarkerEnv.getIntegrationImplFilePath() + "\\" + argObj + "IntegrationServiceImpl.java";
         beforeCreateFile(filePath, myFreemarkerEnv.getIntegrationImplTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建request
+     */
+    public void createRequest(){
+
+        String filePath = myFreemarkerEnv.getRequestFilePath() + "\\" + argObj + "Request.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getRequestTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建requestSearch
+     */
+    public void createSearchRequest(){
+
+        String filePath = myFreemarkerEnv.getSearchRequestFilePath() + "\\" + argObj + "SearchRequest.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getSearchRequestTemplatePath(), argName, argCN);
+    }
+
+    /**
+     * 创建response
+     */
+    public void createResponse(){
+
+        String filePath = myFreemarkerEnv.getResponseFilePath() + "\\" + argObj + "Response.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getResponseTemplatePath(), argName, argCN);
+    }
+    
+    /**
+     * 创建web
+     */
+    public void createWeb(){
+
+        String filePath = myFreemarkerEnv.getWebFilePath() + "\\" + argObj + "WebServer.java";
+        beforeCreateFile(filePath, myFreemarkerEnv.getWebTemplatePath(), argName, argCN);
     }
 
     /**
@@ -609,12 +665,12 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
         }
         //开始打印
         if (outPrint) {
-            this.printMessage(templateFilePath, 1);
+            this.printMessage(targetPositionPath, 1);
         }
         this.createFile(targetPositionPath, templateFilePath, argName, argCN);
         //结束打印
         if (outPrint) {
-            this.printMessage(templateFilePath, 2);
+            this.printMessage(targetPositionPath, 2);
         }
     }
 
@@ -683,36 +739,44 @@ public class MyFreemarker extends AutoGenerator implements IAutoMethodGenerator 
     private void printMessage(String path, Integer type){
 
         StringBuilder sb = new StringBuilder("---");
-        if (path.contains("FacadeImpl")){
+        if (path.endsWith("FacadeServiceImpl.java")){
             sb.append("facadeImpl");
-        }else if (path.contains("Facade")){
+        }else if (path.endsWith("FacadeService.java")){
             sb.append("facade");
-        }else if (path.contains("RepositoryImpl")){
+        }else if (path.endsWith("RepositoryImpl.java")){
             sb.append("repositoryImpl");
-        }else if (path.contains("Repository")){
+        }else if (path.endsWith("Repository.java")){
             sb.append("repository");
-        }else if (path.contains("DomainImpl")){
+        }else if (path.endsWith("DomainServiceImpl.java")){
             sb.append("domainImpl");
-        }else if (path.contains("Domain")){
+        }else if (path.endsWith("DomainService.java")){
             sb.append("domain");
-        }else if (path.contains("SearchBean")){
+        }else if (path.endsWith("SearchBean.java")){
             sb.append("searchBean");
-        }else if (path.contains("SearchParam")) {
+        }else if (path.endsWith("SearchParam.java")) {
             sb.append("searchParam");
-        }else if (path.contains("Search")){
+        }else if (path.endsWith("Search.java")){
             sb.append("search");
-        }else if (path.contains("Bean")){
+        }else if (path.endsWith("Bean.java")){
             sb.append("bean");
-        }else if (path.contains("Condition")){
+        }else if (path.endsWith("Conditions.java")){
             sb.append("condition");
-        }else if (path.contains("Param")) {
+        }else if (path.endsWith("Param.java")) {
             sb.append("param");
-        }else if (path.contains("Result")) {
+        }else if (path.endsWith("Result.java")) {
             sb.append("result");
-        }else if (path.contains("IntegrationImpl")) {
-            sb.append("integrationImpl");
-        }else if (path.contains("Integration")) {
+        }else if (path.endsWith("IntegrationService.java")) {
             sb.append("integration");
+        }else if (path.endsWith("IntegrationServiceImpl.java")) {
+            sb.append("integrationImpl");
+        }else if (path.endsWith("Request.java")) {
+            sb.append("request");
+        }else if (path.endsWith("SearchRequest.java")) {
+            sb.append("searchRequest");
+        }else if (path.endsWith("Response.java")) {
+            sb.append("response");
+        }else if (path.endsWith("WebServer.java")) {
+            sb.append("webServer");
         }else {
              sb.append("undefined");
         }

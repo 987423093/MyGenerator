@@ -1,5 +1,5 @@
 <#assign argObj = "${argName}"?cap_first>
-package com.${company}.${argCenter}.biz.share.autogenerator.code.server.param;
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.param;
 
 import lombok.Data;
 

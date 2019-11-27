@@ -1,5 +1,5 @@
 <#assign argObj = "${argName}"?cap_first>
-package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.result;
+package com.${company}.${argCenter}.biz.share.autogenerator.code.server.web.response;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @date ${dateTime?string("yyyy/MM/dd")}
  */
 @Data
-public class ${argObj}Result {
+public class ${argObj}Response {
     <#if dbObjects ??>
         <#list dbObjects as dbObject>
 
