@@ -1,4 +1,3 @@
-<#assign argObj = "${argName}"?cap_first>
 package com.${company}.${argCenter}.common.facade.interfaces;
 
 import com.${company}.commons.basic.PagerListBean;

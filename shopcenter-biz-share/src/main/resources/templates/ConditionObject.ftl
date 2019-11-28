@@ -1,7 +1,6 @@
-<#assign argObj = "${argName}"?cap_first>
 package com.${company}.${argCenter}.biz.share.autogenerator.freemarker.condition;
 
-import com.${company}.${argCenter}.biz.share.autogenerator.utils.MyObject;
+import com.${company}.${argCenter}.biz.share.autogenerator.freemarker.domain.MyObject;
 import lombok.Data;
 
 import java.io.Serializable;

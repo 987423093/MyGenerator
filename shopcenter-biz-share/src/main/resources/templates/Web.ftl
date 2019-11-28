@@ -1,4 +1,3 @@
-<#assign argObj = "${argName}"?cap_first>
 package com.${company}.${argCenter}.biz.share.autogenerator.code.server.web;
 
 import com.${company}.commons.annotations.Param;

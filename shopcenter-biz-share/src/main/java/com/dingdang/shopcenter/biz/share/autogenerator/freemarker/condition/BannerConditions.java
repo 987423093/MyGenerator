@@ -1,6 +1,6 @@
 package com.dingdang.shopcenter.biz.share.autogenerator.freemarker.condition;
 
-import com.dingdang.shopcenter.biz.share.autogenerator.utils.MyObject;
+import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.domain.MyObject;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * @author zhoutao
- * @date 2019/11/27
+ * @date 2019/11/28
  */
 @Data
 public class BannerConditions {

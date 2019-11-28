@@ -1,4 +1,3 @@
-
 package com.dingdang.shopcenter.biz.shop.repository.impl;
 
 import com.dingdang.commons.basic.PagerListBean;
@@ -19,7 +18,7 @@ import java.util.List;
 
 /**
  * @author zhoutao
- * @date 2019/11/27
+ * @date 2019/11/28
  */
 @Repository
 public class BannerRepositoryImpl implements BannerRepository {
@@ -153,6 +152,10 @@ public class BannerRepositoryImpl implements BannerRepository {
         BannerExample.Criteria criteria = bannerExample.createCriteria();
         if (bannerSearch != null) {
 
+            //banner名称
+            if (StringUtils.isNotBlank(bannerSearch.getBannerName())){
+                criteria.andBannerNameEqualTo(bannerSearch.getBannerName());
+            }
         }
         criteria.andStateEqualTo(StateEnum.USE.getCode());
     }

@@ -1,6 +1,7 @@
 package com.dingdang.shopcenter.biz.share.autogenerator.utils;
 
 import com.dingdang.commons.exceptions.ServiceException;
+import com.dingdang.commons.utils.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +29,6 @@ public class FilePathTool {
         String itemCenter = getItemCenter(basePath);
         //特征短语
         String item = getItem(basePath);
-
         return new FilePath(basePath, packageFilePath, resourceFilePath, itemCenter, item);
     }
 
@@ -138,6 +138,10 @@ public class FilePathTool {
         String item = getItemCenter(basePath);
         if (item.endsWith("center")){
             item = item.substring(0, item.length() - "center".length());
+        }
+
+        if (StringUtils.isBlank(item)) {
+            throw new ServiceException(-1, "找不到特征短语");
         }
         return item;
     }

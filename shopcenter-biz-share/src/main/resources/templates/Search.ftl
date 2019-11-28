@@ -1,4 +1,3 @@
-<#assign argObj = "${argName}"?cap_first>
 package com.${company}.${argCenter}.biz.${argItem}.condition;
 
 import lombok.Data;

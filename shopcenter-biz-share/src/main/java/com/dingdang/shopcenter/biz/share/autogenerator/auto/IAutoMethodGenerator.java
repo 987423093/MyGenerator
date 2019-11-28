@@ -1,7 +1,5 @@
 package com.dingdang.shopcenter.biz.share.autogenerator.auto;
 
-import com.dingdang.shopcenter.biz.share.autogenerator.utils.MyObject;
-
 /**
  * @author zhoutao
  * @date 2019/10/28
@@ -9,36 +7,10 @@ import com.dingdang.shopcenter.biz.share.autogenerator.utils.MyObject;
 public interface IAutoMethodGenerator {
 
     /**
-     * 初始化表
-     * @param tableName 表名称
-     * @param argCN 参数中文名称
+     * 获得条件生成器
      * @return
      */
-    IAutoMethodGenerator initTableObject(String tableName, String argCN);
-
-    /**
-     * 添加模糊条件
-     * @param myObject 模糊条件
-     */
-    void addLikeCondition(MyObject myObject);
-
-    /**
-     * 添加时间范围条件
-     * @param myObject 时间条件
-     */
-    void addDateBetweenCondition(MyObject myObject);
-
-    /**
-     * 添加查询条件
-     * @param myObject 查询条件
-     */
-    void addSearchCondition(MyObject myObject);
-
-    /**
-     * 添加必填条件
-     * @param myObject 必填条件
-     */
-    void addMustCondition(MyObject myObject);
+    IAutoConditions getConditionGenerator();
 
     /**
      * 初始化条件对象
@@ -61,9 +33,12 @@ public interface IAutoMethodGenerator {
     void createServer();
 
     /**
-     * 创建数据库对象
+     * 初始化表
+     * @param tableName 表名称
+     * @param argCN 参数中文名称
+     * @return
      */
-    void createDBObject();
+    IAutoMethodGenerator initTableObject(String tableName, String argCN);
 
     /**
      * 得到dubbo配置
@@ -76,12 +51,6 @@ public interface IAutoMethodGenerator {
      * @param backup true/false
      */
     void setBackup(boolean backup);
-
-    /**
-     * 是否开启打印,默认true
-     * @param outPrint true/false
-     */
-    void setOutPrint(boolean outPrint);
 
     /**
      * 回滚上一次

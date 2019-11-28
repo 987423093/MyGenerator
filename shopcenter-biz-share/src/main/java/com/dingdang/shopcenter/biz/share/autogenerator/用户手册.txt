@@ -28,19 +28,9 @@
     2.argCN: 中文描述
 【方法介绍】
 
-    * createAll(): 生成所有类,包含了所有的业务层,bean,db,dubboConfig
-    * createClazz(): 生成domain,domainImpl.repository,repositoryImpl,facade,facadeImpl六个业务层的代码
-    * createBeans(): 生成bean,searchBean,search三个bean
-    createDomain(): 生成domain接口层
-    createDomainImpl(): 生成domain实现层
-    createRepository(): 生成repository接口层
-    createRepositoryImpl(): 生成repository实现层
-    createFacade(): 生成facade实现层
-    createFacadeImpl(): 生成facade接口层
-    createBean(): 生成bean
-    createSearchBean(): 生成searchBean
-    createSearch(): 生成search
-    createDBObject(): 生成dataobject并初始化字段信息，可为createBean()提供参数
+    * createAll(): 生成所有代码
+    * createCenter(): 生成中心层代码
+    * createServer(): 生成接口层代码
     getDubboConfig(): 生成dubbo配置
     createConditionObject：生成条件对象，方便setCondition()
     rollBack(): 撤回最近一次文件

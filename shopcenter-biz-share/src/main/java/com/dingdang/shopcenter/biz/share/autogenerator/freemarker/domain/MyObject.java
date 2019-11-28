@@ -1,4 +1,4 @@
-package com.dingdang.shopcenter.biz.share.autogenerator.utils;
+package com.dingdang.shopcenter.biz.share.autogenerator.freemarker.domain;
 
 import lombok.Data;
 

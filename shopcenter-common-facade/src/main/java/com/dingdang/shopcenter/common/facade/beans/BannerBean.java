@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 /**
  * @author zhoutao
- * @date 2019/11/27
+ * @date 2019/11/28
  */
 @Data
 public class BannerBean implements Serializable {

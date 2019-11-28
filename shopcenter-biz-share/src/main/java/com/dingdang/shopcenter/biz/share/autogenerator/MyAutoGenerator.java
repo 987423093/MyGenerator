@@ -1,6 +1,8 @@
 package com.dingdang.shopcenter.biz.share.autogenerator;
 
 import com.dingdang.shopcenter.biz.share.autogenerator.auto.*;
+import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.MyFreemarkerGenerator;
+import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.condition.BannerConditions;
 import com.dingdang.shopcenter.biz.share.autogenerator.utils.GlobalEnv;
 
 /**
@@ -39,22 +41,24 @@ public class MyAutoGenerator {
 
         GlobalEnv.setAuthor("zhoutao");
         //祖先生成器
-        IAutoGenerator autoGenerator = new AutoGenerator(new AutoEnvFactory().getDefaultEnv());
-        //方法生成器
-        IAutoMethodGenerator autoMethodGenerator = autoGenerator.createDefaultGenerator().initTableObject("t_banner", "横幅");
-        //初始化条件对象
+        IAutoGenerator autoGenerator = new MyFreemarkerGenerator();
+        //简易方法生成器
+        IAutoMethodGenerator autoMethodGenerator = autoGenerator.createMethodGenerator().initTableObject("t_banner", "横幅");
+
+        //初始化要使用的条件对象
         autoMethodGenerator.initConditions();
         //设置条件
-        setCondition(autoMethodGenerator);
+        setCondition(autoMethodGenerator.getConditionGenerator());
         autoMethodGenerator.createAll();
     }
 
 
     /**
      * 设置可选条件
-     * @param autoMethodGenerator
+     * @param autoConditions
      */
-    private static void setCondition(IAutoMethodGenerator autoMethodGenerator){
+    private static void setCondition(IAutoConditions autoConditions){
 
+        autoConditions.addSearchCondition(BannerConditions.bannerName);
     }
 }

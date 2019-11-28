@@ -3,7 +3,7 @@ package com.dingdang.shopcenter.biz.share.autogenerator.freemarker.mybatis;
 import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.xml.Dom4JUtils;
 import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.xml.XmlEnv;
-import com.dingdang.shopcenter.biz.share.autogenerator.utils.MyObject;
+import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.domain.MyObject;
 import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;

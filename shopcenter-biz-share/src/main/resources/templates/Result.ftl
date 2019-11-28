@@ -1,4 +1,3 @@
-<#assign argObj = "${argName}"?cap_first>
 package com.${company}.${argCenter}.biz.share.autogenerator.code.server.integration.result;
 
 import lombok.Data;

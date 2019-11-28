@@ -1,7 +1,7 @@
 package com.dingdang.shopcenter.biz.share.autogenerator.freemarker.xml;
 
 import com.dingdang.shopcenter.biz.share.autogenerator.utils.GlobalEnv;
-import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.env.MyFreemarkerEnv;
+import com.dingdang.shopcenter.biz.share.autogenerator.freemarker.env.MyFreemarkerGlobalEnv;
 
 /**
  * @author zhoutao
@@ -62,30 +62,30 @@ public class XmlEnv {
 
     /**
      * 构造方法
-     * @param myFreemarkerEnv
+     * @param myFreemarkerGlobalEnv
      */
-    public XmlEnv(MyFreemarkerEnv myFreemarkerEnv){
+    public XmlEnv(MyFreemarkerGlobalEnv myFreemarkerGlobalEnv){
 
-        this.initFilePath(myFreemarkerEnv);
+        this.initFilePath(myFreemarkerGlobalEnv);
     }
 
     /**
      * 初始化路径
-     * @param myFreemarkerEnv
+     * @param myFreemarkerGlobalEnv
      */
-    private void initFilePath(MyFreemarkerEnv myFreemarkerEnv){
+    private void initFilePath(MyFreemarkerGlobalEnv myFreemarkerGlobalEnv){
 
-        String packagePath = myFreemarkerEnv.getPackagePath();
+        String packagePath = myFreemarkerGlobalEnv.getPackagePath();
         int index = packagePath.indexOf("src\\main\\java");
         packagePath = packagePath.substring(index + "src\\main\\java".length());
         packagePath = packagePath.replace("\\", ".");
         packagePath = packagePath.substring(1);
         this.commentGeneratorFilePath = packagePath + ".autogenerator.freemarker.mybatis.DBObjectCommentGenerator";
         this.javaTypeResolverFilePath = packagePath + ".autogenerator.freemarker.mybatis.DBObjectJavaTypeResolver";
-        this.connectionURL = preConnectionURL + GlobalEnv.getCompany() + "_" + myFreemarkerEnv.getItemCenter();
-        this.targetPackage = "com." + GlobalEnv.getCompany() + "." + myFreemarkerEnv.getItemCenter() + ".biz." + myFreemarkerEnv.getItem()+ ".dataobject";
-        this.targetProject = myFreemarkerEnv.getItemCenter() + "-biz-" + myFreemarkerEnv.getItem()+ "\\src\\main\\java";
-        this.myBatisXmlPath = myFreemarkerEnv.getBasePath() + myFreemarkerEnv.getResourcePath() + "\\generatorConfig.xml";
+        this.connectionURL = preConnectionURL + GlobalEnv.getCompany() + "_" + myFreemarkerGlobalEnv.getItemCenter();
+        this.targetPackage = "com." + GlobalEnv.getCompany() + "." + myFreemarkerGlobalEnv.getItemCenter() + ".biz." + myFreemarkerGlobalEnv.getItem()+ ".dataobject";
+        this.targetProject = myFreemarkerGlobalEnv.getItemCenter() + "-biz-" + myFreemarkerGlobalEnv.getItem()+ "\\src\\main\\java";
+        this.myBatisXmlPath = myFreemarkerGlobalEnv.getBasePath() + myFreemarkerGlobalEnv.getResourcePath() + "\\generatorConfig.xml";
     }
 
     public String getCommentGeneratorFilePath() {

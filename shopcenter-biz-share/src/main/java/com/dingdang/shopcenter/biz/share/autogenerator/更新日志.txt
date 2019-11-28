@@ -151,3 +151,8 @@ MyFreemarkerGenerator1.1 初版开发完成
 1.web,request,response,searchRequest生成
 2.@result注解添加
 3.transformBean支持泛型
+
+-version-3.4
+2019-11-28
+1.整合所有的环境条件类，将全局环境和每个表的环境以及条件对象作为独立的对象存在
+2.优化代码和打印

@@ -1,7 +1,6 @@
 package com.dingdang.shopcenter.biz.share.autogenerator.freemarker.env;
 
 import com.dingdang.commons.utils.DateUtils;
-import com.dingdang.shopcenter.biz.share.autogenerator.auto.IAutoEnv;
 import com.dingdang.shopcenter.biz.share.autogenerator.utils.FilePath;
 import com.dingdang.shopcenter.biz.share.autogenerator.utils.GlobalEnv;
 
@@ -12,25 +11,20 @@ import java.util.Date;
  * @date 2019/10/14
  * @description 模板环境变量配置类
  */
-public class MyFreemarkerEnv implements IAutoEnv {
+public class MyFreemarkerGlobalEnv {
 
     /**
-     * 公司名称
-     */
-    private final String company = GlobalEnv.getCompany();
-
-    /**
-     * 中心层名称
+     * 中心层
      */
     private String itemCenter;
 
     /**
-     * 中心层特征短语
+     * 中心层短语
      */
     private String item;
 
     /**
-     * 个人目录
+     * 基础路径
      */
     private String basePath;
 
@@ -252,37 +246,29 @@ public class MyFreemarkerEnv implements IAutoEnv {
     /**
      * 构造
      */
-    public MyFreemarkerEnv(){
+    private MyFreemarkerGlobalEnv(){
 
     }
 
     /**
      * 构造
      */
-    public MyFreemarkerEnv(FilePath filePath) {
+    public MyFreemarkerGlobalEnv(FilePath filePath) {
 
-        this.setFilePath(filePath);
-    }
+        String basePath = filePath.getBasePath();
+        String itemCenter = filePath.getItemCenter();
+        String item = filePath.getItem();
+        String packagePath = filePath.getPackagePath();
+        String resourcePath = filePath.getResourcePath();
 
-    /**
-     * 设置文件路径
-     * @return
-     */
-    private MyFreemarkerEnv setFilePath(FilePath filePath) {
+        //全局路径
+        this.item = item;
+        this.itemCenter = itemCenter;
+        this.packagePath = packagePath;
+        this.resourcePath = resourcePath;
+        this.basePath = basePath;
 
-         this.basePath = filePath.getBasePath();
-         this.itemCenter = filePath.getItemCenter();
-         this.item = filePath.getItem();
-         this.packagePath = filePath.getPackagePath();
-         this.resourcePath = filePath.getResourcePath();
-         return this;
-     }
-
-    /**
-     * 初始化文件路径
-     */
-    public void initEnv(){
-
+        //其他环境
         this.templatePath = basePath + resourcePath;
         this.conditionObjectFilePath = basePath + packagePath + "\\autogenerator\\freemarker\\condition";
         this.conditionObjectTemplatePath = "/ConditionObject.ftl";
@@ -309,7 +295,7 @@ public class MyFreemarkerEnv implements IAutoEnv {
         this.searchTemplatePath = "/Search.ftl";
 
         //接口层模板路径
-        
+
         //integration层
         this.paramFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration\\param";
         this.paramTemplatePath = "/Param.ftl";
@@ -321,7 +307,7 @@ public class MyFreemarkerEnv implements IAutoEnv {
         this.integrationTemplatePath = "/Integration.ftl";
         this.integrationImplFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\integration\\impl";
         this.integrationImplTemplatePath = "/IntegrationImpl.ftl";
-        
+
         //web层
         this.requestFilePath = basePath + "\\" + itemCenter + "-biz-share\\src\\main\\java\\com\\" + GlobalEnv.getCompany() + "\\" + itemCenter + "\\biz\\share\\autogenerator\\code\\server\\web\\request";
         this.requestTemplatePath = "/Request.ftl";
@@ -343,6 +329,14 @@ public class MyFreemarkerEnv implements IAutoEnv {
 
     public String getBasePath() {
         return basePath;
+    }
+
+    public String getPackagePath() {
+        return packagePath;
+    }
+
+    public String getResourcePath() {
+        return resourcePath;
     }
 
     public String getTemplatePath() {
@@ -427,14 +421,6 @@ public class MyFreemarkerEnv implements IAutoEnv {
 
     public String getConditionObjectTemplatePath() {
         return conditionObjectTemplatePath;
-    }
-
-    public String getPackagePath() {
-        return packagePath;
-    }
-
-    public String getResourcePath() {
-        return resourcePath;
     }
 
     public String getCachePath() {
