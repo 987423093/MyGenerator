@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dingdang.shopcenter</groupId>
-    <artifactId>dingdang-shopcenter</artifactId>
+    <groupId>com.dingdang.autocenter</groupId>
+    <artifactId>dingdang-autocenter</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>shopcenter-common-facade</module>
-        <module>shopcenter-common-utils</module>
-        <module>shopcenter-common-integration</module>
-        <module>shopcenter-biz-share</module>
-        <module>shopcenter-biz-service-impl</module>
-        <module>shopcenter-biz-shop</module>
-        <module>shopcenter-web</module>
+        <module>autocenter-common-facade</module>
+        <module>autocenter-common-utils</module>
+        <module>autocenter-common-integration</module>
+        <module>autocenter-biz-share</module>
+        <module>autocenter-biz-service-impl</module>
+        <module>autocenter-biz-auto</module>
+        <module>autocenter-web</module>
     </modules>
-    <name>dingdang-shopcenter</name>
+    <name>dingdang-autocenter</name>
 
     <parent>
         <groupId>com.dingdang</groupId>

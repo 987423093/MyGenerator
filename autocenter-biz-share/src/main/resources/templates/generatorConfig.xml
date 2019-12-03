@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator type="com.dingdang.autocenter.biz.share.autogenerator.freemarker.mybatis.DBObjectCommentGenerator">
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://122.51.211.176:3306/dingdang_autocenter" userId="root" password="zhoutao"/>
+        <javaTypeResolver type="com.dingdang.autocenter.biz.share.autogenerator.freemarker.mybatis.DBObjectJavaTypeResolver">
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+        <!--生成实体类存放位置-->
+        <javaModelGenerator targetPackage="com.dingdang.autocenter.biz.auto.dataobject" targetProject="autocenter-biz-auto\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成对应表及类名-->
+        <table tableName="t_mall" domainObjectName="Mall">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

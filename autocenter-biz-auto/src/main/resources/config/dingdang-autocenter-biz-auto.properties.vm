@@ -1,0 +1,7 @@
+autocenter_db_url=${autocenter_db_url}
+autocenter_db_username=${autocenter_db_username}
+autocenter_db_password=${autocenter_db_password}
+autocenter_db_initialSize=${autocenter_db_initialSize}
+autocenter_db_maxActive=${autocenter_db_maxActive}
+autocenter_db_maxIdle=${autocenter_db_maxIdle}
+autocenter_db_minIdle=${autocenter_db_minIdle}
