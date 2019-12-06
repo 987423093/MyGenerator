@@ -1,7 +1,10 @@
 package com.dingdang.autocenter.biz.auto.repository.impl;
 
+import com.dingdang.autocenter.biz.auto.dataobject.Mall;
+import com.dingdang.autocenter.biz.auto.dataobject.MallExample;
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.enums.StateEnum;
+import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.commons.utils.Assert;
 import com.dingdang.commons.utils.CollectionUtils;
 import com.dingdang.commons.utils.StringUtils;
@@ -32,6 +35,11 @@ public class MallRepositoryImpl implements MallRepository {
     @Override
     public Mall addMall(Mall mall){
 
+        if (StringUtils.isBlank()){
+            logger.error("Fail to addMall !  must not be empty !");
+            throw new ServiceException(-1, " 不能为空字符串");
+        }
+        
         Assert.notNull(mall, "mall must not be null !");
         Assert.notNull(mall.getMallName(), "mallName must not be null !");
         Optionals.setDefaultInsert(mall);

@@ -1,8 +1,6 @@
 package com.dingdang.autocenter.biz.share.autogenerator.freemarker;
 
-import com.dingdang.commons.exceptions.ServiceException;
-import com.dingdang.commons.utils.CollectionUtils;
-import com.dingdang.commons.utils.StringUtils;
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.dingdang.autocenter.biz.share.autogenerator.auto.IAutoMethodGenerator;
 import com.dingdang.autocenter.biz.share.autogenerator.freemarker.env.MyFreemarkerGlobalEnv;
 import com.dingdang.autocenter.biz.share.autogenerator.freemarker.env.MyFreemarkerLocalEnv;
@@ -11,6 +9,7 @@ import com.dingdang.autocenter.biz.share.autogenerator.freemarker.xml.Dom4JUtils
 import com.dingdang.autocenter.biz.share.autogenerator.freemarker.xml.XmlEnv;
 import com.dingdang.autocenter.biz.share.autogenerator.utils.GlobalEnv;
 import com.dingdang.autocenter.biz.share.autogenerator.utils.StringFormatUtils;
+import com.dingdang.commons.exceptions.ServiceException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -181,7 +180,7 @@ public class MyFreemarkerMethodGenerator implements IAutoMethodGenerator {
         myMapperCodeGenerator.genarateSqlMapper(path);
     }
 
-    /**
+    /**it
      * 得到dubbo配置
      */
     @Override
