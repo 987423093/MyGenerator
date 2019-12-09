@@ -1,5 +1,6 @@
 package com.dingdang.autocenter.biz.service.impl;
 
+import com.dingdang.autocenter.biz.auto.dataobject.Mall;
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.commons.exceptions.ServiceException;
 import com.dingdang.commons.utils.BeanUtils;

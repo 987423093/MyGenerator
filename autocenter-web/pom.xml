@@ -2,13 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <scm>
-        <connection>scm:git:http://gitlab.91dingdang.cn/dingdang-datacenter/dingdang-autocenter.git</connection>
-        <developerConnection>scm:git:http://gitlab.91dingdang.cn/dingdang-datacenter/dingdang-autocenter.git
-        </developerConnection>
-        <tag>master</tag>
-        <url>git:http://gitlab.91dingdang.cn/dingdang-datacenter/dingdang-autocenter.git</url>
-    </scm>
     <parent>
         <artifactId>dingdang-autocenter</artifactId>
         <groupId>com.dingdang.autocenter</groupId>
@@ -20,34 +13,13 @@
     <name>autocenter-web</name>
     <packaging>war</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
-        <java.encoding>utf-8</java.encoding>
-        <maven.test.skip>true</maven.test.skip>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.dingdang.autocenter</groupId>
             <artifactId>autocenter-biz-service-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.9.6</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
-
     <build>
         <finalName>autocenter-web</finalName>
         <plugins>

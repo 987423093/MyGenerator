@@ -13,13 +13,6 @@
     <name>autocenter-biz-service-impl</name>
     <packaging>jar</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
-        <java.encoding>utf-8</java.encoding>
-        <maven.test.skip>true</maven.test.skip>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.dingdang.autocenter</groupId>
@@ -27,7 +20,7 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.dingdang</groupId>
+            <groupId>com.dingdang.autocenter</groupId>
             <artifactId>autocenter-common-facade</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

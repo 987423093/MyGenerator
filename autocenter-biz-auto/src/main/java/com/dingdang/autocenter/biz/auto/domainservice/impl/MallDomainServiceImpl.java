@@ -1,5 +1,6 @@
 package com.dingdang.autocenter.biz.auto.domainservice.impl;
 
+import com.dingdang.autocenter.biz.auto.dataobject.Mall;
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.autocenter.biz.auto.condition.MallSearch;
 import com.dingdang.autocenter.biz.auto.domainservice.MallDomainService;

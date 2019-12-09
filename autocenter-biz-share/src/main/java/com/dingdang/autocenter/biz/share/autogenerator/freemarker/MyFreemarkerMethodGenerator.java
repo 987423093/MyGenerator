@@ -10,6 +10,7 @@ import com.dingdang.autocenter.biz.share.autogenerator.freemarker.xml.XmlEnv;
 import com.dingdang.autocenter.biz.share.autogenerator.utils.GlobalEnv;
 import com.dingdang.autocenter.biz.share.autogenerator.utils.StringFormatUtils;
 import com.dingdang.commons.exceptions.ServiceException;
+import com.dingdang.commons.utils.CollectionUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;

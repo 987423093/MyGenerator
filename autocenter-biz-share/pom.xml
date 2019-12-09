@@ -13,24 +13,7 @@
     <name>autocenter-biz-share</name>
     <packaging>jar</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
-        <java.encoding>utf-8</java.encoding>
-        <maven.test.skip>true</maven.test.skip>
-    </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>com.dindang</groupId>
-            <artifactId>dingdang-commons</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.23</version>
-        </dependency>
         <dependency>
             <groupId>com.dingdang.autocenter</groupId>
             <artifactId>autocenter-common-utils</artifactId>
@@ -42,49 +25,12 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.dingdang.plugins</groupId>
-            <artifactId>dingdang-plugins</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>2.5.3</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.4.6</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.github.sgroschupf</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dingdang</groupId>
+            <groupId>com.dingdang.autocenter</groupId>
             <artifactId>autocenter-common-facade</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.dindang</groupId>
-            <artifactId>dingdang-commons</artifactId>
-            <version>0.0.1</version>
-            <scope>compile</scope>
-        </dependency>
+
+
     </dependencies>
 
     <build>

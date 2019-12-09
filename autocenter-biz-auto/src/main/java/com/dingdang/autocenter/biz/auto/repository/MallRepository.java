@@ -1,5 +1,6 @@
 package com.dingdang.autocenter.biz.auto.repository;
 
+import com.dingdang.autocenter.biz.auto.dataobject.Mall;
 import com.dingdang.commons.basic.PagerListBean;
 import com.dingdang.autocenter.biz.auto.condition.MallSearch;
 

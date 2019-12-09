@@ -60,6 +60,4 @@
           class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="order" value="1" />
     </bean>
-
-
 </beans>

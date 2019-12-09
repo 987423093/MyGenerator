@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-             http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
-       default-lazy-init="false">
+<beans:beans
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                 http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+        default-lazy-init="false">
 
-    <context:annotation-config/>
+    <mvc:annotation-driven/>
+    <!-- 启用aop -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <context:component-scan base-package="com.dingdang.autocenter"/>
+    <context:component-scan base-package="com.dingdang.autocenter.web.server"/>
 
     <context:property-placeholder location="classpath:/config/dingdang-autocenter-web.properties" ignore-unresolvable="true"/>
 
-    <import resource="classpath:/spring/dingdang-autocenter-biz-service-impl-spring.xml"/>
+    <beans:import resource="classpath:/spring/dingdang-commons-spring.xml"/>
+    <beans:import resource="classpath:/spring/dingdang-autocenter-biz-service-impl-spring.xml"/>
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="${dubbo_application_name}" logger="slf4j"/>
@@ -29,6 +37,6 @@
     <dubbo:service interface="com.dingdang.autocenter.common.facade.interfaces.MallFacadeService"
                    ref="mallFacadeServiceImpl"
                    timeout="20000"/>
-    <bean id="mallFacadeServiceImpl" class="com.dingdang.autocenter.biz.service.impl.MallFacadeServiceImpl"/>
+    <beans:bean id="mallFacadeServiceImpl" class="com.dingdang.autocenter.biz.service.impl.MallFacadeServiceImpl"/>
 
-</beans>
+</beans:beans>

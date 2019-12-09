@@ -22,21 +22,9 @@
         <repository>
             <id>public</id>
             <name>Public Repositories</name>
-            <url>http://122.51.211.176/nexus/content/groups/public/</url>
+            <url>http://122.51.211.176:8081/nexus/content/groups/public/</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <repository>
-            <name>releases</name>
-            <id>releases</id>
-            <url>http://122.51.211.176:8081/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <name>snapshots</name>
-            <id>snapshots</id>
-            <url>http://122.51.211.176:8081/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.encoding>UTF-8</java.encoding>
@@ -67,23 +55,42 @@
         <package.environment>develop</package.environment>
     </properties>
 
-    <dependencyManagement>
     <dependencies>
         <dependency>
-        <groupId>com.dingdang.plugins</groupId>
-        <artifactId>dingdang-plugins</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </dependency>
+            <groupId>com.dingdang</groupId>
+            <artifactId>configcenter-common-facade</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sgroschupf</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dingdang</groupId>
+            <artifactId>dingdang-commons</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dingdang.plugins</groupId>
+            <artifactId>dingdang-plugins</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- 引入spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
             <version>${springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-asm</artifactId>
-            <version>3.1.4.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -145,11 +152,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-
-
-        <!--<dependencies>-->
-
-
         <dependency>
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
@@ -192,13 +194,6 @@
             <version>6.9.10</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng-spring</artifactId>
-            <version>4.7</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.agent</artifactId>
@@ -395,32 +390,6 @@
             <version>[7.2.0, 7.2.99]</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>3.3.1</version>
-            <!--<version>3.7.0</version>-->
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.qiniu</groupId>
-            <artifactId>happy-dns-java</artifactId>
-            <version>0.1.4</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- 验证码 -->
-        <dependency>
-            <groupId>com.dingdang.thirdpart</groupId>
-            <artifactId>jcaptcha</artifactId>
-            <version>1.0-all</version>
-        </dependency>
-        <dependency>
-            <groupId>com.octo.captcha</groupId>
-            <artifactId>jcaptcha-all</artifactId>
-            <version>1.0-RC6</version>
-        </dependency>
-
         <!-- 身份证 -->
         <dependency>
             <groupId>com.aliyun.odps</groupId>
@@ -437,6 +406,12 @@
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
             <version>1.1.0</version>
+        </dependency>
+        <!-- 验证码 -->
+        <dependency>
+            <groupId>com.dingdang.thirdpart</groupId>
+            <artifactId>jcaptcha</artifactId>
+            <version>1.0-all</version>
         </dependency>
 
         <!-- 引入gson -->
@@ -457,8 +432,6 @@
             <artifactId>redisson</artifactId>
             <version>2.2.5</version>
         </dependency>
-
-
         <!-- 引入日志框架 slf4j 和 logback -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -546,15 +519,5 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.dindang</groupId>
-            <artifactId>dingdang-commons</artifactId>
-            <version>0.0.1</version>
-        </dependency>
     </dependencies>
-    </dependencyManagement>
 </project>

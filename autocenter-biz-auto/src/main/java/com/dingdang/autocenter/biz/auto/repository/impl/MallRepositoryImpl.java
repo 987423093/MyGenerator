@@ -35,11 +35,7 @@ public class MallRepositoryImpl implements MallRepository {
     @Override
     public Mall addMall(Mall mall){
 
-        if (StringUtils.isBlank()){
-            logger.error("Fail to addMall !  must not be empty !");
-            throw new ServiceException(-1, " 不能为空字符串");
-        }
-        
+
         Assert.notNull(mall, "mall must not be null !");
         Assert.notNull(mall.getMallName(), "mallName must not be null !");
         Optionals.setDefaultInsert(mall);

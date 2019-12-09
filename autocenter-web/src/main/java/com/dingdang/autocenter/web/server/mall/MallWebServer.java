@@ -1,4 +1,4 @@
-package com.dingdang.autocenter.biz.share.autogenerator.code.server.web;
+package com.dingdang.autocenter.web.server.mall;
 
 import com.dingdang.commons.annotations.Param;
 import com.dingdang.commons.basic.PagerListBean;
@@ -17,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.sql.rowset.serial.SerialException;
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ import java.util.List;
  * @date 2019/12/03
  */
 @Service("mall")
-public class MallWebServer {
+public class MallWebServer{
 
     private final transient Logger logger = LoggerFactory.getLogger(MallWebServer.class);
 
@@ -38,7 +40,6 @@ public class MallWebServer {
      */
     public MallResponse addMall(@Param(name = "userId", type = Long.class) Long userId,
                                           @Param(name = "mallRequest", type = MallRequest.class) MallRequest mallRequest) {
-
         if (mallRequest == null){
             logger.error("Fail to addMall ! mallRequest must not be null !");
             throw new ServiceException(-1, "mallRequest 不能为空");
@@ -93,13 +94,14 @@ public class MallWebServer {
      * @param mallId
      * @return
      */
-    public MallResponse getMallDetail(@Param(name = "mallId", type = Long.class) Long mallId) {
+    public MallResponse getMallDetail(@Param(name = "mallId", type = Long.class)Long mallId) {
 
         if (mallId == null){
             logger.error("Fail to getMallDetail ! mallId must not be null !");
             throw new ServiceException(-1, "mallId 不能为空");
         }
-        return Optionals.transformBean(mallIntegrationService.getMallDetail(mallId), MallResponse.class);
+        MallResponse mall = Optionals.transformBean(mallIntegrationService.getMallDetail(mallId), MallResponse.class);
+        return mall;
     }
 
     /**
