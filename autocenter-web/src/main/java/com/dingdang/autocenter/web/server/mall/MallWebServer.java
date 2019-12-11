@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sql.rowset.serial.SerialException;
 import java.util.List;
 
 /**
@@ -26,7 +25,7 @@ import java.util.List;
  * @date 2019/12/03
  */
 @Service("mall")
-public class MallWebServer{
+public class MallWebServer {
 
     private final transient Logger logger = LoggerFactory.getLogger(MallWebServer.class);
 
@@ -40,6 +39,7 @@ public class MallWebServer{
      */
     public MallResponse addMall(@Param(name = "userId", type = Long.class) Long userId,
                                           @Param(name = "mallRequest", type = MallRequest.class) MallRequest mallRequest) {
+
         if (mallRequest == null){
             logger.error("Fail to addMall ! mallRequest must not be null !");
             throw new ServiceException(-1, "mallRequest 不能为空");

@@ -30,20 +30,24 @@
             value="3" /> <property name="minEvictableIdleTimeMillis" value="320000" /> -->
     </bean>
 
+    <!-- 配置sqlSessionFactory Bean -->
     <bean id="autoSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" name="accountSqlSessionFactory">
         <property name="dataSource" ref="autoDataSource" />
         <property name="mapperLocations" value="classpath:sqlmap-auto/*.xml" />
     </bean>
 
+    <!-- 配置mapperScannerConfigurer Bean -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.dingdang.autocenter.biz.auto.dao" />
         <property name="sqlSessionFactoryBeanName" value="autoSqlSessionFactory" />
     </bean>
 
+    <!-- 配置事务管理器 transactionManager Bean -->
     <bean id="autoTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="autoDataSource" />
     </bean>
 
+    <!-- 启动注解驱动的事务 -->
     <tx:annotation-driven transaction-manager="autoTransactionManager" />
 
     <bean id="autoTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
