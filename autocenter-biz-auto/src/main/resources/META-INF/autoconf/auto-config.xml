@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<group name="db">
+		<property name="autocenter_db_url" defaultValue="jdbc:mysql://122.51.211.176:3306/dingdang_autocenter?characterEncoding=utf8&amp;allowMultiQueries=true" />
+		<property name="autocenter_db_username" defaultValue="root" />
+		<property name="autocenter_db_password" defaultValue="zhoutao" />
+		<property name="autocenter_db_initialSize" defaultValue="2"/>
+		<property name="autocenter_db_maxActive" defaultValue="2"/>
+		<property name="autocenter_db_maxIdle" defaultValue="2"/>
+		<property name="autocenter_db_minIdle" defaultValue="2"/>
+	</group>
+	<script>
+		<generate template="config/dingdang-autocenter-biz-auto.properties.vm" destfile="config/dingdang-autocenter-biz-auto.properties" charset="UTF-8" />
+	</script>
+</config>

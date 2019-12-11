@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                 http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+        default-lazy-init="false">
+
+    <mvc:annotation-driven/>
+    <!-- 启用aop -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:component-scan base-package="com.dingdang.autocenter.web.server"/>
+
+    <context:property-placeholder location="classpath:/config/dingdang-autocenter-web.properties" ignore-unresolvable="true"/>
+
+    <beans:import resource="classpath:/spring/dingdang-commons-spring.xml"/>
+    <beans:import resource="classpath:/spring/dingdang-autocenter-biz-service-impl-spring.xml"/>
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="${dubbo_application_name}" logger="slf4j"/>
+    <!-- 使用 zookeeper 广播注册中心暴露服务地址 -->
+    <dubbo:registry protocol="zookeeper" address="${dubbo_registry_address}"/>
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="${dubbo_protocol_name}" port="${dubbo_protocol_port}" accesslog="true"/>
+    <!-- dubbo监控地址 -->
+    <dubbo:monitor protocol="registry"/>
+
+    <!-- 声明需要暴露的服务接口 -->
+    <!-- 商城 -->
+    <dubbo:service interface="com.dingdang.autocenter.common.facade.interfaces.MallFacadeService"
+                   ref="mallFacadeServiceImpl"
+                   timeout="20000"/>
+    <beans:bean id="mallFacadeServiceImpl" class="com.dingdang.autocenter.biz.service.impl.MallFacadeServiceImpl"/>
+
+</beans:beans>
